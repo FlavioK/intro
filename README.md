@@ -1,2 +1,2 @@
 # intro
-repository to the intro module of hslu
+repository for the intro module of hslu
