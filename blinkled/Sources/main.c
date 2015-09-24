@@ -54,8 +54,18 @@ int main(void)
 
   /* Write your code here */
   for(;;) {
+	  LED1_On();
+	  WAIT1_Waitms(400);
 	  LED1_Neg();
-	  WAIT1_Waitms(500);
+	  WAIT1_Waitms(100);
+	  LED1_Neg();
+	  WAIT1_Waitms(200);
+	  LED1_Neg();
+	  WAIT1_Waitms(100);
+	  LED1_Neg();
+	  WAIT1_Waitms(350);
+	  LED1_Neg();
+	  WAIT1_Waitms(300);
   }
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
