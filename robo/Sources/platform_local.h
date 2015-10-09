@@ -12,5 +12,6 @@
 #define LED_EN 1
 #define LED_NBR 2
 
+#define PL_CONFIG_HAS_TIMER
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */
