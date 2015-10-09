@@ -7,7 +7,7 @@
   */
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_TIMER
+#ifdef PL_CONFIG_HAS_TIMER
 #include "Timer.h"
 
 void TMR_OnInterrupt(void) {
