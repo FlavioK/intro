@@ -7,8 +7,9 @@
   */
 
 #include "Platform.h"
-#ifdef PL_CONFIG_HAS_TIMER
+#if PL_HAS_TIMER
 #include "Timer.h"
+
 
 void TMR_OnInterrupt(void) {
   /* this one gets called from an interrupt!!!! */

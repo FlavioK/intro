@@ -10,6 +10,9 @@
 
 #include "platform_local.h"
 
+#define PL_HAS_EVENTS (1 && PL_LOCAL_HAS_EVENTS)
+#define PL_HAS_TIMER (1 && PL_LOCAL_HAS_TIMER)
+
 void PL_Init(void);
 void PL_Deinit(void);
 
