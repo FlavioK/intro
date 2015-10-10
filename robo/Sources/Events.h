@@ -44,6 +44,8 @@
 #include "TU1.h"
 #include "WAIT1.h"
 #include "CS1.h"
+#include "Key1.h"
+#include "BitIoLdd3.h"
 
 #ifdef __cplusplus
 extern "C" {

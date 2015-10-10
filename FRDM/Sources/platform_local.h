@@ -10,6 +10,7 @@
 
 #define DEVICENAME FRDM
 #define LED_NBR 3
+#define KEY_NBR 7
 
 #define PL_LOCAL_HAS_TIMER 1
 #define PL_LOCAL_HAS_EVENTS 1

@@ -24,12 +24,10 @@ void TMR_OnInterrupt(void) {
 }
 
 void TMR_Init(void) {
-  /* nothing needed right now */
 	TI1_Enable();
 }
 
 void TMR_Deinit(void) {
-  /* nothing needed right now */
 	TI1_Disable();
 }
 

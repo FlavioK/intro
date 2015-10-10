@@ -8,19 +8,19 @@
 #ifndef SOURCES_COMMON_MASTER_LED_H_
 #define SOURCES_COMMON_MASTER_LED_H_
 
-	#include "Platform.h"
-	#if LED_NBR >= 1
-	#include "LED1.h"
-	#endif
+#include "Platform.h"
+#if LED_NBR >= 1
+#include "LED1.h"
+#endif
 
-	#if LED_NBR >= 2
-	#include "LED2.h"
-	#endif
+#if LED_NBR >= 2
+#include "LED2.h"
+#endif
 
-	#if LED_NBR >=3
-	#include "LED3.h"
-	#endif
+#if LED_NBR >=3
+#include "LED3.h"
+#endif
 
-	void LED_Init(void);
-	void LED_Deinit(void);
+void LED_Init(void);
+void LED_Deinit(void);
 #endif /* SOURCES_COMMON_MASTER_LED_H_ */

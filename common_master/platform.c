@@ -8,7 +8,7 @@
 #include "platform.h"
 #include "platform_local.h"
 #if PL_HAS_LED
-	#include "LED.h"
+#include "LED.h"
 #endif
 #if PL_HAS_EVENTS
 #include "event_handler.h"
@@ -17,27 +17,27 @@
 #include "timer.h"
 #endif
 
-void PL_Init(void){
-	#if PL_HAS_LED
-		LED_Init();
-	#endif
+void PL_Init(void) {
+#if PL_HAS_LED
+	LED_Init();
+#endif
 #if PL_HAS_EVENTS
-		EVNT_Init();
+	EVNT_Init();
 #endif
 #if PL_HAS_TIMER
-		TMR_Init();
+	TMR_Init();
 #endif
 
 }
 
-void PL_Deinit(void){
-	#if PL_HAS_LED
-		LED_Deinit();
-	#endif
+void PL_Deinit(void) {
+#if PL_HAS_LED
+	LED_Deinit();
+#endif
 #if PL_HAS_EVENTS
-		EVNT_Deinit();
+	EVNT_Deinit();
 #endif
 #if PL_HAS_TIMER
-		TMR_Deinit();
+	TMR_Deinit();
 #endif
 }

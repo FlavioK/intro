@@ -41,6 +41,8 @@
 #include "TU1.h"
 #include "WAIT1.h"
 #include "CS1.h"
+#include "Key1.h"
+#include "BitIoLdd3.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -82,6 +84,6 @@ int main(void)
 **
 **     This file was created by Processor Expert 10.5 [05.21]
 **     for the Freescale Kinetis series of microcontrollers.
-**
+**rr
 ** ###################################################################
 */
