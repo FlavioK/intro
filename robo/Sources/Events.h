@@ -43,6 +43,7 @@
 #include "TimerIntLdd1.h"
 #include "TU1.h"
 #include "WAIT1.h"
+#include "CS1.h"
 
 #ifdef __cplusplus
 extern "C" {
