@@ -8,10 +8,11 @@
 
 #ifndef TIMER_H_
 #define TIMER_H_
+#include "platform.h"
 
 #if PL_HAS_TIMER
 
-#define TMR_TICK_MS  1
+#define TMR_TICK_MS  10
 /*!< we get called every TMR_TICK_MS ms */
 
 /*! \brief Function called from timer interrupt every TMR_TICK_MS. */
