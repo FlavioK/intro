@@ -26,7 +26,7 @@ void APP_event_handler(EVNT_Handle event) {
 #if PL_HAS_LED
 #if LED_NBR>=1
 	case EVNT_STARTUP:
-		LED1_Off();
+		LED1_On();
 		break;
 #endif /*LED_NBR >=1*/
 #if LED_NBR>=2
