@@ -17,27 +17,76 @@
 #if PL_HAS_KEY
 #include "Key.h"
 #endif
+#if PL_HAS_SHELL
+#include "CLS1.h"
+#endif
 
 void APP_event_handler(EVNT_Handle event) {
 	switch (event) {
-	case EVNT_STARTUP:
+#if PL_HAS_LED
 #if LED_NBR>=1
+	case EVNT_STARTUP:
 		LED1_Off();
-#endif
 		break;
-
-	case EVNT_LEDHEARTBEAT:
+#endif /*LED_NBR >=1*/
 #if LED_NBR>=2
-		//LED2_Neg();
-#endif
+	case EVNT_LEDHEARTBEAT:
+		LED2_Neg();
 		break;
+#endif /*LED_NBR >=2*/
+#endif /*PL_HAS_LED*/
+
 #if PL_HAS_KEY
 #if KEY_NBR >= 1
 	case KEY1:
-		LED2_Neg();
+#if PL_HAS_SHELL
+		CLS1_SendStr("KEY1 is pressed\r\n",CLS1_GetStdio()->stdOut);
+#endif /*PL_HAS_SHELL*/
 		break;
-#endif
-#endif
+#endif /*KEY_NBR >=1*/
+#if KEY_NBR >= 2
+	case KEY2:
+#if PL_HAS_SHELL
+		CLS1_SendStr("KEY2 is pressed\r\n",CLS1_GetStdio()->stdOut);
+#endif /*PL_HAS_SHELL*/
+		break;
+#endif /*KEY_NBR >=2*/
+#if KEY_NBR >= 3
+	case KEY3:
+#if PL_HAS_SHELL
+		CLS1_SendStr("KEY3 is pressed\r\n",CLS1_GetStdio()->stdOut);
+#endif /*PL_HAS_SHELL*/
+		break;
+#endif /*KEY_NBR >=3*/
+#if KEY_NBR >= 4
+	case KEY4:
+#if PL_HAS_SHELL
+		CLS1_SendStr("KEY4 is pressed\r\n",CLS1_GetStdio()->stdOut);
+#endif /*PL_HAS_SHELL*/
+		break;
+#endif /*KEY_NBR >=4*/
+#if KEY_NBR >= 5
+	case KEY5:
+#if PL_HAS_SHELL
+		CLS1_SendStr("KEY5 is pressed\r\n",CLS1_GetStdio()->stdOut);
+#endif /*PL_HAS_SHELL*/
+		break;
+#endif /*KEY_NBR >=5*/
+#if KEY_NBR >= 6
+	case KEY6:
+#if PL_HAS_SHELL
+		CLS1_SendStr("KEY6 is pressed\r\n",CLS1_GetStdio()->stdOut);
+#endif /*PL_HAS_SHELL*/
+		break;
+#endif /*KEY_NBR >=6*/
+#if KEY_NBR >= 7
+	case KEY7:
+#if PL_HAS_SHELL
+		CLS1_SendStr("KEY7 is pressed\r\n",CLS1_GetStdio()->stdOut);
+#endif /*PL_HAS_SHELL*/
+		break;
+#endif /*KEY_NBR >=7*/
+#endif /*PL_HAS_KEY*/
 	default:
 		break;
 	}

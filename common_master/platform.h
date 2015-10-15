@@ -15,6 +15,7 @@
 #define PL_HAS_TIMER (1 && PL_LOCAL_HAS_TIMER)
 #define PL_HAS_LED (1 && PL_LOCAL_HAS_LED)
 #define PL_HAS_KEY (1 && PL_LOCAL_HAS_KEY)
+#define PL_HAS_SHELL (1 && PL_LOCAL_HAS_SHELL)
 
 void PL_Init(void);
 void PL_Deinit(void);
