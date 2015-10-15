@@ -16,5 +16,6 @@
 #define PL_LOCAL_HAS_EVENTS 1
 #define PL_LOCAL_HAS_LED 1
 #define PL_LOCAL_HAS_KEY 1
+#define PL_LOCAL_HAS_SHELL 1
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */
