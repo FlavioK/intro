@@ -7,7 +7,7 @@
  * Triggers are special events which are triggered in a given time in the future
  */
 #include "Platform.h"
-#if PL_CONFIG_HAS_TRIGGER
+#if PL_HAS_TRIGGER
 #include "Trigger.h"
 #include "Cpu.h"
 #include "CS1.h"

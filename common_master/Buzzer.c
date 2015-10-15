@@ -7,7 +7,7 @@
  */
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_BUZZER
+#if PL_HAS_BUZZER
 #include "Buzzer.h"
 #include "BUZ1.h"
 #include "Trigger.h"

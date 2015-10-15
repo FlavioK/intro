@@ -16,6 +16,8 @@
 #define PL_HAS_LED (1 && PL_LOCAL_HAS_LED)
 #define PL_HAS_KEY (1 && PL_LOCAL_HAS_KEY)
 #define PL_HAS_SHELL (1 && PL_LOCAL_HAS_SHELL)
+#define PL_HAS_BUZZER (1 && PL_LOCAL_HAS_BUZZER)
+#define PL_HAS_TRIGGER (1 && PL_LOCAL_HAS_TRIGGER)
 
 void PL_Init(void);
 void PL_Deinit(void);
