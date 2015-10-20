@@ -20,6 +20,9 @@
 #if PL_HAS_SHELL
 #include "CLS1.h"
 #endif
+#if PL_HAS_BUZZER
+#include "Buzzer.h"
+#endif
 
 void APP_event_handler(EVNT_Handle event) {
 	switch (event) {
@@ -37,6 +40,9 @@ void APP_event_handler(EVNT_Handle event) {
 #if PL_HAS_SHELL
 		CLS1_SendStr("KEY1 is pressed\r\n",CLS1_GetStdio()->stdOut);
 #endif /*PL_HAS_SHELL*/
+#if PL_HAS_BUZZER
+		BUZ_Beep(440,1000);
+#endif /*PL_HAS_BUZZER*/
 		break;
 #endif /*KEY_NBR >=1*/
 #if KEY_NBR >= 2
@@ -91,6 +97,7 @@ void APP_run(void) {
 
 	PL_Init();
 	EVNT_SetEvent(EVNT_STARTUP);
+	LED_StartHeartBeat();
 
 	for (;;) {
 #if PL_HAS_EVENTS

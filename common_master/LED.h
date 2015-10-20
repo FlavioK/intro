@@ -23,4 +23,5 @@
 
 void LED_Init(void);
 void LED_Deinit(void);
+void LED_StartHeartBeat(void);
 #endif /* SOURCES_COMMON_MASTER_LED_H_ */

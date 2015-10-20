@@ -15,7 +15,11 @@ static void LED_HeartBeat(void *p){
 #if LED_NBR >=2
 	LED2_Neg();
 #endif
-	TRG_SetTrigger(TRG_HEARTBEAT,200/TRG_TICKS_MS,LED_HeartBeat,NULL);
+	TRG_SetTrigger(TRG_HEARTBEAT,500/TRG_TICKS_MS,LED_HeartBeat,NULL);
+}
+
+void LED_StartHeartBeat(void){
+			LED_HeartBeat(NULL);
 }
 #endif
 
@@ -31,10 +35,6 @@ void LED_Init(void){
 	#if  LED_NBR >= 3
 		LED3_Init();
 	#endif
-#if PL_HAS_TRIGGER
-			LED_HeartBeat(NULL);
-#endif
-
 }
 
 void LED_Deinit(void){
