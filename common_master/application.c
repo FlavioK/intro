@@ -29,11 +29,6 @@ void APP_event_handler(EVNT_Handle event) {
 		LED1_On();
 		break;
 #endif /*LED_NBR >=1*/
-#if LED_NBR>=2
-	case EVNT_LEDHEARTBEAT:
-		LED2_Neg();
-		break;
-#endif /*LED_NBR >=2*/
 #endif /*PL_HAS_LED*/
 
 #if PL_HAS_KEY

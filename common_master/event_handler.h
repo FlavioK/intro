@@ -13,10 +13,8 @@
 #if PL_HAS_EVENTS
 
 typedef enum{
+#if PL_HAS_LED && (LED_NBR >= 1)
 	EVNT_STARTUP,
-
-#if PL_HAS_LED && (LED_NBR >= 2)
-	EVNT_LEDHEARTBEAT,
 #endif
 
 #if PL_HAS_KEY

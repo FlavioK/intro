@@ -11,16 +11,14 @@
 #include "Timer.h"
 #include "TI1.h"
 #include "event_handler.h"
+#if PL_HAS_TRIGGER
+#include "Trigger.h"
+#endif
 
 void TMR_OnInterrupt(void) {
-#define BLINK_PERIOD_MS 1000
-	static int counter = 0;
-
-	counter++;
-	if(counter == BLINK_PERIOD_MS/TMR_TICK_MS){
-		counter = 0;
-		EVNT_SetEvent(EVNT_LEDHEARTBEAT);
-	}
+#if PL_HAS_TRIGGER
+		TRG_IncTick();
+#endif
 }
 
 void TMR_Init(void) {

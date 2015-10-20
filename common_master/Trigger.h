@@ -22,8 +22,9 @@ typedef enum {
 #if PL_HAS_BUZZER
   TRG_BUZ_BEEP, /*!< Buzzer beep */
 #endif /*PL_HAS_BUZZER*/
+  TRG_HEARTBEAT,
   TRG_KEYPRESS, /*!< key debounce */
-  TRG_NOF_TRIGGERS /*!< Must be last! */
+  TRG_NOF_TRIGGERS, /*!< Must be last! */
 } TRG_TriggerKind;
 
 /*! \brief Type for the data pointer used by the callback */
