@@ -43,9 +43,10 @@ static bool CheckCallbacks(void) {
   TRG_CallBackDataPtr data;
   bool calledCallBack = FALSE;
   CS1_CriticalVariable()
-  CS1_EnterCritical();
-  for(i=(TRG_TriggerKind)0;i<TRG_NOF_TRIGGERS;i++) {
 
+
+  for(i=(TRG_TriggerKind)0;i<TRG_NOF_TRIGGERS;i++) {
+	  CS1_EnterCritical();
     if (TRG_Triggers[i].ticks==0 && TRG_Triggers[i].callback != NULL) { /* trigger! */
       callback = TRG_Triggers[i].callback; /* get a copy */
       data = TRG_Triggers[i].data; /* get backup of data, as we overwrite it below */
@@ -55,10 +56,10 @@ static bool CheckCallbacks(void) {
       callback(data);
       calledCallBack = TRUE; /* callback may have set a trigger at the current time: rescan trigger list */
     } else {
-
+      CS1_ExitCritical();
     }
   } /* for */
-  CS1_ExitCritical();
+
   return calledCallBack;
 }
 
