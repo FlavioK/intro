@@ -9,10 +9,10 @@
 #include "Platform.h"
 #if PL_CONFIG_HAS_DEBOUNCE
 
-#include "Keys.h"
+#include "Key.h"
 #include "Debounce.h"
 #include "Trigger.h"
-#include "Event.h"
+#include "Event_handler.h"
 
 /*!
  * \brief Returns the state of the keys. This directly reflects the value of the port
@@ -21,37 +21,37 @@
 static DBNC_KeySet KEYDBNC_GetKeys(void) {
   DBNC_KeySet keys = 0;
 
-#if PL_CONFIG_NOF_KEYS >= 1
+#if KEY_NBR >= 1
   if (KEY1_Get()) {
     keys |= (1<<0);
   }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 2
+#if KEY_NBR >= 2
   if (KEY2_Get()) {
     keys |= (1<<1);
   }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 3
+#if KEY_NBR >= 3
   if (KEY3_Get()) {
     keys |= (1<<2);
   }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 4
+#if KEY_NBR >= 4
   if (KEY4_Get()) {
     keys |= (1<<3);
   }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 5
+#if KEY_NBR >= 5
   if (KEY5_Get()) {
     keys |= (1<<4);
   }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 6
+#if KEY_NBR >= 6
   if (KEY6_Get()) {
     keys |= (1<<5);
   }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 7
+#if KEY_NBR >= 7
   if (KEY7_Get()) {
     keys |= (1<<6);
   }
@@ -68,37 +68,37 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
   switch(event) {
     /* pressed */
     case DBNC_EVENT_PRESSED:
-#if PL_CONFIG_NOF_KEYS >= 1
+#if KEY_NBR >= 1
       if (keys==(1<<0)) {
         EVNT_SetEvent(EVNT_SW1_PRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 2
+#if KEY_NBR >= 2
       if (keys==(1<<1)) {
         EVNT_SetEvent(EVNT_SW2_PRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 3
+#if KEY_NBR >= 3
       if (keys==(1<<2)) {
         EVNT_SetEvent(EVNT_SW3_PRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 4
+#if KEY_NBR >= 4
       if (keys==(1<<3)) {
         EVNT_SetEvent(EVNT_SW4_PRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 5
+#if KEY_NBR >= 5
       if (keys==(1<<4)) {
         EVNT_SetEvent(EVNT_SW5_PRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 6
+#if KEY_NBR >= 6
       if (keys==(1<<5)) {
         EVNT_SetEvent(EVNT_SW6_PRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 7
+#if KEY_NBR >= 7
       if (keys==(1<<6)) {
         EVNT_SetEvent(EVNT_SW7_PRESSED);
       }
@@ -107,37 +107,37 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
 
     /* long pressed */
     case DBNC_EVENT_LONG_PRESSED:
-#if PL_CONFIG_NOF_KEYS >= 1
+#if KEY_NBR >= 1
       if (keys==(1<<0)) {
         EVNT_SetEvent(EVNT_SW1_LPRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 2
+#if KEY_NBR >= 2
       if (keys==(1<<1)) {
         EVNT_SetEvent(EVNT_SW2_LPRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 3
+#if KEY_NBR >= 3
      if (keys==(1<<2)) {
         EVNT_SetEvent(EVNT_SW3_LPRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 4
+#if KEY_NBR >= 4
      if (keys==(1<<3)) {
         EVNT_SetEvent(EVNT_SW4_LPRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 5
+#if KEY_NBR >= 5
      if (keys==(1<<4)) {
         EVNT_SetEvent(EVNT_SW5_LPRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 6
+#if KEY_NBR >= 6
      if (keys==(1<<5)) {
         EVNT_SetEvent(EVNT_SW6_LPRESSED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 7
+#if KEY_NBR >= 7
      if (keys==(1<<6)) {
         EVNT_SetEvent(EVNT_SW7_LPRESSED);
       }
@@ -146,37 +146,37 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
 
      /* released */
     case DBNC_EVENT_RELEASED:
-#if PL_CONFIG_NOF_KEYS >= 1
+#if KEY_NBR >= 1
       if (keys==(1<<0)) {
         EVNT_SetEvent(EVNT_SW1_RELEASED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 2
+#if KEY_NBR >= 2
       if (keys==(1<<1)) {
         EVNT_SetEvent(EVNT_SW2_RELEASED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 3
+#if KEY_NBR >= 3
       if (keys==(1<<2)) {
         EVNT_SetEvent(EVNT_SW3_RELEASED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 4
+#if KEY_NBR >= 4
       if (keys==(1<<3)) {
         EVNT_SetEvent(EVNT_SW4_RELEASED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 5
+#if KEY_NBR >= 5
       if (keys==(1<<4)) {
         EVNT_SetEvent(EVNT_SW5_RELEASED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 6
+#if KEY_NBR >= 6
       if (keys==(1<<5)) {
         EVNT_SetEvent(EVNT_SW6_RELEASED);
       }
 #endif
-#if PL_CONFIG_NOF_KEYS >= 7
+#if KEY_NBR >= 7
       if (keys==(1<<6)) {
         EVNT_SetEvent(EVNT_SW7_RELEASED);
       }

@@ -25,6 +25,10 @@
 #if PL_HAS_BUZZER
 #include "Buzzer.h"
 #endif
+#if PL_CONFIG_HAS_DEBOUNCE
+#include "Debounce.h"
+#include "KeyDebounce.h"
+#endif
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -44,6 +48,10 @@ void PL_Init(void) {
 #endif
 #if PL_HAS_BUZZER
 	BUZ_Init();
+#endif
+#if PL_CONFIG_HAS_DEBOUNCE
+	DBNC_Init();
+	KEYDBNC_Init();
 #endif
 
 }
@@ -66,5 +74,9 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_BUZZER
 	BUZ_Deinit();
+#endif
+#if PL_CONFIG_HAS_DEBOUNCE
+	DBNC_Deinit();
+	KEYDBNC_Deinit();
 #endif
 }
