@@ -24,17 +24,76 @@
 #include "Buzzer.h"
 #endif
 
-void APP_event_handler(EVNT_Handle event) {
-	switch (event) {
-#if PL_HAS_LED
-#if LED_NBR>=1
-	case EVNT_STARTUP:
-		LED1_On();
-		break;
-#endif /*LED_NBR >=1*/
-#endif /*PL_HAS_LED*/
 
-#if PL_HAS_KEY
+void APP_KeyEvntHandler(EVNT_Handle event){
+	switch(event){
+#if PL_CONFIG_HAS_DEBOUNCE
+#if KEY_NBR >= 1
+    case EVNT_SW1_PRESSED:
+      break;
+    case EVNT_SW1_LPRESSED:
+      break;
+    case EVNT_SW1_RELEASED:
+      break;
+#endif /*KeyNbr 1*/
+
+#if KEY_NBR >= 2
+    case EVNT_SW2_PRESSED:
+      break;
+    case EVNT_SW2_LPRESSED:
+      break;
+    case EVNT_SW2_RELEASED:
+      break;
+#endif /*Key NMBR 2*/
+
+  #if KEY_NBR >= 3
+   case EVNT_SW3_PRESSED:
+      break;
+   case EVNT_SW3_LPRESSED:
+      break;
+   case EVNT_SW3_RELEASED:
+      break;
+  #endif/*Key NMBR 3*/
+
+  #if KEY_NBR >= 4
+    case EVNT_SW4_PRESSED:
+      break;
+    case EVNT_SW4_LPRESSED:
+      break;
+    case EVNT_SW4_RELEASED:
+      break;
+  #endif /*Key NMBR 4*/
+
+  #if KEY_NBR >= 5
+    case EVNT_SW5_PRESSED:
+      break;
+    case EVNT_SW5_LPRESSED:
+      break;
+    case EVNT_SW5_RELEASED:;
+      break;
+  #endif /*Key NMBR 5*/
+
+  #if KEY_NBR >= 6
+    case EVNT_SW6_PRESSED:
+      break;
+    case EVNT_SW6_LPRESSED:
+      break;
+    case EVNT_SW6_RELEASED:
+      break;
+  #endif /*Key NMBR 6*/
+
+  #if KEY_NBR >= 7
+    case EVNT_SW7_PRESSED:
+     break;
+
+    case EVNT_SW7_LPRESSED:
+      break;
+
+    case EVNT_SW7_RELEASED:
+      break;
+  #endif /*Key NMBR 7*/
+
+#else
 #if KEY_NBR >= 1
 	case KEY1:
 #if PL_HAS_SHELL
@@ -87,9 +146,35 @@ void APP_event_handler(EVNT_Handle event) {
 #endif /*PL_HAS_SHELL*/
 		break;
 #endif /*KEY_NBR >=7*/
-#endif /*PL_HAS_KEY*/
+#endif /*PL_CONFIG_HAS_KEYS*/
 	default:
 		break;
+	}
+}
+
+
+
+void APP_event_handler(EVNT_Handle event) {
+	switch (event) {
+	case EVNT_STARTUP:
+#if PL_HAS_LED
+#if LED_NBR>=1
+		LED1_Off();
+#endif /*LED_NBR >=1*/
+#if LED_NBR>=2
+		LED2_Off();
+#endif /*LED_NBR >=1*/
+#if LED_NBR>=3
+		LED3_Off();
+#endif /*LED_NBR >=1*/
+#endif /*PL_HAS_LED*/
+		break;
+
+	default:
+#if PL_HAS_KEY
+      APP_KeyEvntHandler(event);
+#endif
+	  break;
 	}
 }
 

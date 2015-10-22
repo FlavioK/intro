@@ -8,6 +8,10 @@
 #include "Key.h"
 #include "event_handler.h"
 
+#if PL_CONFIG_HAS_DEBOUNCE
+#include "KeyDebounce.h"
+#endif
+
 void Key_Init(void){
 	/* Nothing to do here */
 }
@@ -17,6 +21,9 @@ void Key_Deinit(void){
 }
 
 void Key_Scan(void){
+#if PL_CONFIG_HAS_DEBOUNCE
+	  KEYDBNC_Process();
+#else
 #if PL_HAS_EVENTS
 
 #if KEY_NBR >= 1
@@ -54,6 +61,7 @@ void Key_Scan(void){
 		EVNT_SetEvent(KEY7);
 	}
 #endif
-#endif
+#endif /*PL_HAS_EVENTS*/
+#endif /*PL_CONFIG_HAS_DEBOUNCE*/
 }
 

@@ -22,37 +22,37 @@ static DBNC_KeySet KEYDBNC_GetKeys(void) {
   DBNC_KeySet keys = 0;
 
 #if KEY_NBR >= 1
-  if (KEY1_Get()) {
+  if (!Key1_GetVal()) {
     keys |= (1<<0);
   }
 #endif
 #if KEY_NBR >= 2
-  if (KEY2_Get()) {
+  if (!Key2_GetVal()) {
     keys |= (1<<1);
   }
 #endif
 #if KEY_NBR >= 3
-  if (KEY3_Get()) {
+  if (!Key3_GetVal()) {
     keys |= (1<<2);
   }
 #endif
 #if KEY_NBR >= 4
-  if (KEY4_Get()) {
+  if (!Key4_GetVal()) {
     keys |= (1<<3);
   }
 #endif
 #if KEY_NBR >= 5
-  if (KEY5_Get()) {
+  if (!Key5_GetVal()) {
     keys |= (1<<4);
   }
 #endif
 #if KEY_NBR >= 6
-  if (KEY6_Get()) {
+  if (!Key6_GetVal()) {
     keys |= (1<<5);
   }
 #endif
 #if KEY_NBR >= 7
-  if (KEY7_Get()) {
+  if (!Key7_GetVal()) {
     keys |= (1<<6);
   }
 #endif

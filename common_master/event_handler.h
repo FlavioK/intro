@@ -13,9 +13,7 @@
 #if PL_HAS_EVENTS
 
 typedef enum{
-#if PL_HAS_LED && (LED_NBR >= 1)
 	EVNT_STARTUP,
-#endif
 #if PL_CONFIG_HAS_DEBOUNCE
 #if KEY_NBR >= 1
   EVNT_SW1_PRESSED,
@@ -52,7 +50,7 @@ typedef enum{
   EVNT_SW7_LPRESSED,
   EVNT_SW7_RELEASED,
 #endif
-#else
+#else /*PL_CONFIG_HAS DEBOUNCE == 0*/
 #if PL_HAS_KEY
 #if KEY_NBR >= 1
 	KEY1,
@@ -76,7 +74,7 @@ typedef enum{
 	KEY7,
 #endif
 #endif /*PL_HAS_KEYS*/
-#endif /*PL_CONFIG_HAS_DEBOUNCE
+#endif /*PL_CONFIG_HAS_DEBOUNCE*/
 	EVNT_SIZE,
 } EVNT_Handle;
 
