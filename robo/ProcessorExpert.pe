@@ -18443,7 +18443,6 @@
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
                     <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
                     <Value>false</Value>
                     <Expanded>false</Expanded>
                   </ItemState>
@@ -18452,7 +18451,6 @@
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
                     <Value />
-                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
                     <SharedPrphMode>false</SharedPrphMode>
                   </ItemState>
                   <ItemState>
@@ -18460,14 +18458,12 @@
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
                     <Value />
-                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
                   </ItemState>
                   <ItemState>
                     <ItemSymbol>RTSsupport</ItemSymbol>
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
                     <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
                     <Value>false</Value>
                     <Expanded>false</Expanded>
                   </ItemState>
@@ -18476,7 +18472,6 @@
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
                     <Value />
-                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
                     <SharedPrphMode>false</SharedPrphMode>
                   </ItemState>
                   <ItemState>
@@ -18484,7 +18479,6 @@
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
                     <Value />
-                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
                   </ItemState>
                   <ItemState>
                     <ItemSymbol>RtsBufferSize</ItemSymbol>
@@ -18492,7 +18486,6 @@
                     <UserReadOnly>false</UserReadOnly>
                     <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
                     <Value>1</Value>
-                    <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
                     <Base>DEC</Base>
                   </ItemState>
                   <ItemState>
