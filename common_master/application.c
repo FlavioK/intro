@@ -23,6 +23,9 @@
 #if PL_HAS_BUZZER
 #include "Buzzer.h"
 #endif
+#if PL_HAS_RTOS
+#include "RTOS.h"
+#endif
 
 
 void APP_KeyEvntHandler(EVNT_Handle event){
@@ -191,7 +194,10 @@ void APP_run(void) {
 	LED_StartHeartBeat();
 
 	for (;;) {
-#if PL_HAS_EVENTS
+#if PL_HAS_RTOS
+		RTOS_Run();
+#endif
+#if PL_HAS_EVENTS && !PL_HAS_RTOS
 		EVNT_HandleEvent(APP_event_handler);
 #endif
 
