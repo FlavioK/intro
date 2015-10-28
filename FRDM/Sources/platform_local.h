@@ -12,13 +12,14 @@
 #define LED_NBR 3
 #define KEY_NBR 7
 
-#define PL_LOCAL_HAS_TIMER 1
-#define PL_LOCAL_HAS_EVENTS 1
-#define PL_LOCAL_HAS_LED 1
-#define PL_LOCAL_HAS_KEY 1
-#define PL_LOCAL_HAS_SHELL 1
-#define PL_LOCAL_HAS_BUZZER 0
-#define PL_LOCAL_HAS_TRIGGER 1
-#define PL_LOCAL_HAS_DEBOUNCE 1
+#define PL_LOCAL_HAS_TIMER 		(1)
+#define PL_LOCAL_HAS_EVENTS 	(1)
+#define PL_LOCAL_HAS_LED 		(1)
+#define PL_LOCAL_HAS_KEY 		(1)
+#define PL_LOCAL_HAS_SHELL 		(1)
+#define PL_LOCAL_HAS_BUZZER 	(0)
+#define PL_LOCAL_HAS_TRIGGER 	(1)
+#define PL_LOCAL_HAS_DEBOUNCE 	(1)
+#define PL_LOCAL_HAS_RTOS 		(1)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */

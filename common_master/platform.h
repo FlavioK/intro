@@ -19,6 +19,7 @@
 #define PL_HAS_BUZZER (1 && PL_LOCAL_HAS_BUZZER)
 #define PL_HAS_TRIGGER (1 && PL_LOCAL_HAS_TRIGGER)
 #define PL_CONFIG_HAS_DEBOUNCE (1 && PL_LOCAL_HAS_DEBOUNCE)
+#define PL_HAS_RTOS (1 && PL_LOCAL_HAS_RTOS)
 
 void PL_Init(void);
 void PL_Deinit(void);
