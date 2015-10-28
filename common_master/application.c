@@ -30,11 +30,14 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 #if PL_CONFIG_HAS_DEBOUNCE
 #if KEY_NBR >= 1
     case EVNT_SW1_PRESSED:
+#if PL_HAS_BUZZER
 		BUZ_Beep(440,1000);
-
+#endif
       break;
     case EVNT_SW1_LPRESSED:
+#if PL_HAS_BUZZER
 		BUZ_Beep(600,1000);
+#endif
       break;
     case EVNT_SW1_RELEASED:
       break;
