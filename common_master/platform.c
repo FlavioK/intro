@@ -35,6 +35,9 @@
 #if PL_HAS_SNAKE
   #include "Snake.h"
 #endif
+#if PL_HAS_SHELL
+#include "Shell.h"
+#endif
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -61,6 +64,9 @@ void PL_Init(void) {
 #endif
 #if PL_HAS_SNAKE
 	SNAKE_Init();
+#endif
+#if PL_HAS_SHELL
+	SHELL_Init();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Init();
@@ -93,6 +99,9 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_SNAKE
 	SNAKE_Deinit();
+#endif
+#if PL_HAS_SHELL
+	SHELL_Deinit();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Deinit();

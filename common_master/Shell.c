@@ -7,15 +7,15 @@
  */
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_SHELL
+#if PL_HAS_SHELL
 #include "Shell.h"
 #include "CLS1.h"
 #include "Application.h"
 #include "FRTOS1.h"
-#if PL_CONFIG_HAS_USB_CDC
+#if PL_HAS_USB_CDC
   #include "USB1.h"
 #endif
-#if PL_CONFIG_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH
   #include "BT1.h"
 #endif
 
@@ -29,7 +29,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
 #endif
-#if PL_CONFIG_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH
   #if BT1_PARSE_COMMAND_ENABLED
   BT1_ParseCommand,
   #endif
@@ -92,7 +92,7 @@ static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const
   return ERR_OK;
 }
 
-#if PL_CONFIG_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH
 /* Bluetooth stdio */
 static CLS1_ConstStdIOType BT_stdio = {
   (CLS1_StdIO_In_FctType)BT1_StdIOReadChar, /* stdin */
@@ -102,7 +102,7 @@ static CLS1_ConstStdIOType BT_stdio = {
 };
 #endif
 
-#if PL_CONFIG_HAS_USB_CDC /* USB-CDC stdio */
+#if PL_HAS_USB_CDC /* USB-CDC stdio */
 static bool CDC_StdIOKeyPressed(void) {
   return (bool)((CDC1_GetCharsInRxBuf()==0U) ? FALSE : TRUE); /* true if there are characters in receive buffer */
 }
@@ -127,10 +127,10 @@ static CLS1_ConstStdIOType CDC_stdio = {
 #endif
 
 static portTASK_FUNCTION(ShellTask, pvParameters) {
-#if PL_CONFIG_HAS_USB_CDC
+#if PL_HAS_USB_CDC
   static unsigned char cdc_buf[48];
 #endif
-#if PL_CONFIG_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH
   static unsigned char bluetooth_buf[48];
 #endif
   static unsigned char localConsole_buf[48];
@@ -139,7 +139,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #endif
   
   (void)pvParameters; /* not used */
-#if PL_CONFIG_HAS_USB_CDC
+#if PL_HAS_USB_CDC
   cdc_buf[0] = '\0';
 #endif
 #if PL_HAS_BLUETOOTH
@@ -153,10 +153,10 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if CLS1_DEFAULT_SERIAL
     (void)CLS1_ReadAndParseWithCommandTable(localConsole_buf, sizeof(localConsole_buf), ioLocal, CmdParserTable);
 #endif
-#if PL_CONFIG_HAS_USB_CDC
+#if PL_HAS_USB_CDC
     (void)CLS1_ReadAndParseWithCommandTable(cdc_buf, sizeof(cdc_buf), &CDC_stdio, CmdParserTable);
 #endif
-#if PL_CONFIG_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH
     (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
 #endif
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
@@ -164,10 +164,10 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 }
 
 void SHELL_Init(void) {
-#if !CLS1_DEFAULT_SERIAL && PL_CONFIG_HAS_BLUETOOTH
+#if !CLS1_DEFAULT_SERIAL && PL_HAS_BLUETOOTH
   (void)CLS1_SetStdio(&BT_stdio); /* use the Bluetooth stdio as default */
 #endif
-#if PL_CONFIG_HAS_RTOS
+#if PL_HAS_RTOS
   if (FRTOS1_xTaskCreate(ShellTask, "Shell", configMINIMAL_STACK_SIZE+100, NULL, tskIDLE_PRIORITY+1, NULL) != pdPASS) {
     for(;;){} /* error */
   }
