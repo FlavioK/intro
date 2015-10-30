@@ -25,7 +25,7 @@ static void AppTask(void* param) {
 #if PL_HAS_KEY && KEY_NBR>0 && !PL_CONFIG_HAS_KBI
 		Key_Scan(); /* scan keys */
 #endif
-		FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+		FRTOS1_vTaskDelay(5/portTICK_RATE_MS);
 	}
 }
 
