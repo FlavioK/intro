@@ -18,6 +18,7 @@
 #define PL_LOCAL_HAS_KEY 		(1)
 #define PL_LOCAL_HAS_SHELL 		(1)
 #define PL_LOCAL_HAS_BLUETOOTH	(1)
+#define PL_LOCAL_HAS_USB_CDC	(1)
 #define PL_LOCAL_HAS_TRIGGER 	(1)
 #define PL_LOCAL_HAS_BUZZER 	(1)
 #define PL_LOCAL_HAS_DEBOUNCE 	(1)
