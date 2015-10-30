@@ -14,7 +14,7 @@
 * ----------------------------------------------------------------------------
 */
 #include "Platform.h"
-#if PL_CONFIG_HAS_SNAKE
+#if PL_HAS_SNAKE
 #include "PDC1.h"
 #include "WAIT1.h"
 #include "GDisp1.h"
@@ -23,7 +23,7 @@
 #include "Snake.h"
 #include "UTIL1.h"
 #include "FRTOS1.h"
-#include "Event.h"
+#include "event_handler.h"
 
 #if PL_CONFIG_EVENTS_AUTO_CLEAR
   #error "This code needs to have auto clearing events in EVNT_HandleEvent() disabled!"

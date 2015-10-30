@@ -16,7 +16,11 @@ static void AppTask(void* param) {
 	EVNT_SetEvent(EVNT_STARTUP); /* set startup event */
 	for (;;) {
 #if PL_HAS_EVENTS
-		EVNT_HandleEvent(APP_event_handler);
+#if !PL_AUTO_CLEAR_EVENT
+		EVNT_HandleEvent(APP_event_handler,FALSE);
+#else
+		EVNT_HandleEvent(APP_event_handler,TRUE);
+#endif
 #endif
 #if PL_HAS_KEY && KEY_NBR>0 && !PL_CONFIG_HAS_KBI
 		Key_Scan(); /* scan keys */

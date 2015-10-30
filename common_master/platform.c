@@ -32,6 +32,9 @@
 #if PL_HAS_RTOS
 #include "RTOS.h"
 #endif
+#if PL_HAS_SNAKE
+  #include "Snake.h"
+#endif
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -55,6 +58,9 @@ void PL_Init(void) {
 #if PL_CONFIG_HAS_DEBOUNCE
 	DBNC_Init();
 	KEYDBNC_Init();
+#endif
+#if PL_HAS_SNAKE
+	SNAKE_Init();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Init();
@@ -84,6 +90,9 @@ void PL_Deinit(void) {
 #if PL_CONFIG_HAS_DEBOUNCE
 	DBNC_Deinit();
 	KEYDBNC_Deinit();
+#endif
+#if PL_HAS_SNAKE
+	SNAKE_Deinit();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Deinit();

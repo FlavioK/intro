@@ -63,15 +63,16 @@ bool EVNT_EventIsSetAutoClear(EVNT_Handle event) {
 	return res;
 }
 
-void EVNT_HandleEvent(void (*callback)(EVNT_Handle)) {
+void EVNT_HandleEvent(void (*callback)(EVNT_Handle),bool event_autoclear) {
 	/* Handle the one with the highest priority. Zero is the event with the highest priority. */
 	EVNT_Handle event;
 	CS1_CriticalVariable();
 	CS1_EnterCritical();
 	for (event = (EVNT_Handle) 0; event < EVNT_SIZE; event++) { /* does a test on every event */
 		if (GET_EVENT(event)) { /* event present? */
+			if(event_autoclear){
 			CLR_EVENT(event); /* clear event */
-
+			}
 			CS1_ExitCritical();
 			break; /* get out of loop */
 		}
