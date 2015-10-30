@@ -41,7 +41,7 @@
 
 /* defaults */
 #define SNAKE_LEN   10
-#define SNAKE_SPEED 40 /* initial delay in ms */
+#define SNAKE_SPEED 20 /* initial delay in ms */
 
 /* snake length */
 static int snakeLen = SNAKE_LEN;

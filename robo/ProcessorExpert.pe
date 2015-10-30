@@ -3,7 +3,7 @@
   <Header>
     <Name>robo</Name>
     <SavedBy>Flavio</SavedBy>
-    <ModificationStamp>22</ModificationStamp>
+    <ModificationStamp>26</ModificationStamp>
     <Date>2015-09-25</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -11347,7 +11347,7 @@
     </ItemState>
   </Configuration>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED1</Name>
     <CompNumb>5</CompNumb>
@@ -11357,7 +11357,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.066</BeanVersion>
+    <BeanVersion>01.065</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -12019,20 +12019,20 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>false</Value>
-        <Expanded>false</Expanded>
+        <Value>true</Value>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>Shell</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value />
+        <Value>CLS1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>Utility</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value />
+        <Value>UTIL1</Value>
       </ItemState>
     </Properties>
     <Methods>
@@ -12125,17 +12125,17 @@
         <ReadOnly>true</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <Value>false</Value>
+        <Index>0</Index>
+        <Value>true</Value>
         <LastSelection>true</LastSelection>
-        <LastUserSel>never</LastUserSel>
+        <LastUserSel>always</LastUserSel>
         <UsrMethodName>ParseCommand</UsrMethodName>
       </ItemState>
     </Methods>
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
     <Name>LED2</Name>
     <CompNumb>8</CompNumb>
@@ -12145,7 +12145,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.066</BeanVersion>
+    <BeanVersion>01.065</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -15001,7 +15001,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Wait</BeanType>
     <Name>WAIT1</Name>
     <CompNumb>15</CompNumb>
@@ -15194,7 +15194,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>CriticalSection</BeanType>
     <Name>CS1</Name>
     <CompNumb>16</CompNumb>
@@ -15864,7 +15864,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Shell</BeanType>
     <Name>CLS1</Name>
     <CompNumb>21</CompNumb>
@@ -15888,14 +15888,14 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <Value>false</Value>
+        <Index>0</Index>
+        <Value>true</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>Prompt</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>"CMD&gt; "</Value>
+        <Value>"Je suis Robo&gt; "</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ProjectNameStr</ItemSymbol>
@@ -16016,8 +16016,8 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>false</Value>
-        <Expanded>false</Expanded>
+        <Value>true</Value>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>NofHistoryItems</ItemSymbol>
@@ -16411,7 +16411,7 @@
     </Events>
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Utility</BeanType>
     <Name>UTIL1</Name>
     <CompNumb>22</CompNumb>
@@ -17085,7 +17085,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>Bluetooth_EGBT</BeanType>
     <Name>BT1</Name>
     <CompNumb>23</CompNumb>
@@ -21293,7 +21293,7 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${ProcessorExpertPath:user}</Repository>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>FreeRTOS</BeanType>
     <Name>FRTOS1</Name>
     <CompNumb>28</CompNumb>
@@ -21303,7 +21303,7 @@
     <UserFolderName />
     <Comment lines_count="0" />
     <Template />
-    <BeanVersion>01.438</BeanVersion>
+    <BeanVersion>01.435</BeanVersion>
     <LightErrorsIgnored>false</LightErrorsIgnored>
     <Properties>
       <ItemState>
@@ -21463,14 +21463,6 @@
         <Value>true</Value>
       </ItemState>
       <ItemState>
-        <ItemSymbol>EnableGDBDebugHelper</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
-        <UserReadOnly>false</UserReadOnly>
-        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <Value>false</Value>
-      </ItemState>
-      <ItemState>
         <ItemSymbol>UseApplicationTaskTags</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
@@ -21508,9 +21500,9 @@
         <UserReadOnly>false</UserReadOnly>
         <Index>0</Index>
         <RegCompType>PercepioTrace</RegCompType>
-        <RegCompRepository>file:/${ProcessorExpertPath:user}</RegCompRepository>
+        <RegCompRepository>file:/${home_ProcessorExpert_loc}/MyComponents</RegCompRepository>
         <InheritedComponentState>
-          <Repository>file:/${ProcessorExpertPath:user}</Repository>
+          <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
           <BeanType>PercepioTrace</BeanType>
           <Name>RTOSTRC1</Name>
           <CompNumb>30</CompNumb>
@@ -23722,7 +23714,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>2048</Value>
+        <Value>4096</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -23818,6 +23810,14 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <Value>UTIL1</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>EnableGDBDebugHelper</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
       </ItemState>
     </Properties>
     <Methods>

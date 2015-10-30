@@ -6,7 +6,7 @@
  * This module implements the front to the console/shell functionality.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_SHELL
 #include "Shell.h"
 #include "CLS1.h"
@@ -17,6 +17,9 @@
 #endif
 #if PL_HAS_BLUETOOTH
   #include "BT1.h"
+#endif
+#if PL_HAS_LED
+#include "LED1.h"
 #endif
 
 /* forward declaration */
@@ -34,6 +37,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   BT1_ParseCommand,
   #endif
 #endif
+  LED1_ParseCommand,
   NULL /* Sentinel */
 };
 
