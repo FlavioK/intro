@@ -18,7 +18,7 @@
 #if PL_HAS_BLUETOOTH
   #include "BT1.h"
 #endif
-#if PL_HAS_LED
+#if LED1_PARSE_COMMAND_ENABLED
 #include "LED1.h"
 #endif
 
@@ -37,7 +37,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   BT1_ParseCommand,
   #endif
 #endif
+#if LED1_PARSE_COMMAND_ENABLED
   LED1_ParseCommand,
+#endif
   NULL /* Sentinel */
 };
 
