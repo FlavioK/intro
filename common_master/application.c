@@ -39,6 +39,7 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 #if PL_HAS_BUZZER
 		BUZ_Beep(440,1000);
 #endif
+
 #if PL_HAS_SNAKE
   EVNT_SetEvent(EVNT_SNAKE_UP);
 #endif

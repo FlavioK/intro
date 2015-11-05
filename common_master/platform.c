@@ -38,6 +38,10 @@
 #if PL_HAS_SHELL
 #include "Shell.h"
 #endif
+#if PL_HAS_MENU
+#include "Menu.h"
+#endif
+
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -71,7 +75,9 @@ void PL_Init(void) {
 #if PL_HAS_RTOS
 	RTOS_Init();
 #endif
-
+#if PL_HAS_MENU
+	MENU_Init();
+#endif
 }
 
 void PL_Deinit(void) {
@@ -105,5 +111,8 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_RTOS
 	RTOS_Deinit();
+#endif
+#if PL_HAS_MENU
+	MENU_Deinit();
 #endif
 }

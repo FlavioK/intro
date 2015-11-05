@@ -24,6 +24,7 @@
 #define PL_HAS_SNAKE (1 && PL_LOCAL_HAS_SNAKE)
 #define PL_AUTO_CLEAR_EVENT (1 && PL_LOCAL_AUTO_CLEAR_EVENT)
 #define PL_HAS_USB_CDC (1 && PL_LOCAL_HAS_USB_CDC)
+#define PL_HAS_MENU (1 && PL_LOCAL_HAS_MENU)
 
 void PL_Init(void);
 void PL_Deinit(void);
