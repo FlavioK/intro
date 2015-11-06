@@ -7,7 +7,7 @@
  */
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_REFLECTANCE
+#if PL_HAS_REFLECTANCE
 #include "Reflectance.h"
 #include "LED_IR.h"
 #include "WAIT1.h"
@@ -21,9 +21,9 @@
 #include "UTIL1.h"
 #include "FRTOS1.h"
 #include "Application.h"
-#include "Event.h"
+#include "event_handler.h"
 #include "Shell.h"
-#if PL_CONFIG_HAS_BUZZER
+#if PL_HAS_BUZZER
   #include "Buzzer.h"
 #endif
 
@@ -33,7 +33,7 @@
 #define REF_MIN_NOISE_VAL     0x40   /* values below this are not added to the weighted sum */
 #define REF_USE_WHITE_LINE    0  /* if set to 1, then the robot is using a white (on black) line, otherwise a black (on white) line */
 
-#define REF_START_STOP_CALIB      0 /* start/stop calibration commands */
+#define REF_START_STOP_CALIB      1 /* start/stop calibration commands */
 
 #if REF_START_STOP_CALIB
   static xSemaphoreHandle REF_StartStopSem = NULL;
@@ -463,7 +463,7 @@ void REF_Init(void) {
   refState = REF_STATE_INIT;
   timerHandle = RefCnt_Init(NULL);
   /*! \todo You might need to adjust priority or other task settings */
-  if (FRTOS1_xTaskCreate(ReflTask, "Refl", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL) != pdPASS) {
+  if (FRTOS1_xTaskCreate(ReflTask, "Refl", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+1, NULL) != pdPASS) {
     for(;;){} /* error */
   }
 }

@@ -4,7 +4,8 @@
  *  Created on: 31.10.2015
  *      Author: Pascal
  */
-
+#include "platform.h"
+#if PL_HAS_MENU
 #include "Menu.h"
 #include "FDisp1.h"
 #include "FRTOS1.h"
@@ -91,3 +92,4 @@ void MENU_Init(void) {
 void MENU_deinit(void) {
 	//Nothing to do here
 }
+#endif

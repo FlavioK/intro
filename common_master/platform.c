@@ -44,6 +44,9 @@
 #if PL_HAS_SHELLQUEUE
 #include "ShellQueue.h"
 #endif
+#if PL_HAS_REFLECTANCE
+#include "Reflectance.h"
+#endif
 
 
 void PL_Init(void) {
@@ -77,6 +80,9 @@ void PL_Init(void) {
 #endif
 #if PL_HAS_SHELLQUEUE
 	SQUEUE_Init();
+#endif
+#if PL_HAS_REFLECTANCE
+	REF_Init();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Init();
@@ -117,6 +123,9 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_SHELLQUEUE
 	SQUEUE_Deinit();
+#endif
+#if PL_HAS_REFLECTANCE
+	REF_Deinit();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Deinit();

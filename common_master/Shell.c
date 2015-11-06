@@ -24,6 +24,9 @@
 #if PL_HAS_SHELLQUEUE
 #include "ShellQueue.h"
 #endif
+#if PL_HAS_REFLECTANCE
+  #include "Reflectance.h"
+#endif
 
 /* forward declaration */
 static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
@@ -42,6 +45,11 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if LED1_PARSE_COMMAND_ENABLED
   LED1_ParseCommand,
+#endif
+#if PL_HAS_REFLECTANCE
+  #if REF_PARSE_COMMAND_ENABLED
+  REF_ParseCommand,
+  #endif
 #endif
   NULL /* Sentinel */
 };
