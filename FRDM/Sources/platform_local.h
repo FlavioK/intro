@@ -25,5 +25,6 @@
 #define PL_LOCAL_AUTO_CLEAR_EVENT	(0)
 #define PL_LOCAL_HAS_USB_CDC		(1)
 #define PL_LOCAL_HAS_MENU			(0)
+#define PL_LOCAL_HAS_SHELLQUEUE		(1)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */

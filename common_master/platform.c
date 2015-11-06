@@ -41,6 +41,9 @@
 #if PL_HAS_MENU
 #include "Menu.h"
 #endif
+#if PL_HAS_SHELLQUEUE
+#include "ShellQueue.h"
+#endif
 
 
 void PL_Init(void) {
@@ -71,6 +74,9 @@ void PL_Init(void) {
 #endif
 #if PL_HAS_SHELL
 	SHELL_Init();
+#endif
+#if PL_HAS_SHELLQUEUE
+	SQUEUE_Init();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Init();
@@ -108,6 +114,9 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_SHELL
 	SHELL_Deinit();
+#endif
+#if PL_HAS_SHELLQUEUE
+	SQUEUE_Deinit();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Deinit();
