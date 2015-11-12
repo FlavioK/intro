@@ -82,6 +82,9 @@ typedef enum{
   EVNT_SNAKE_LEFT,
   EVNT_SNAKE_RIGHT,
 #endif/*PL_HAS_SNAKE*/
+#if PL_HAS_REFLECTANCE
+  EVNT_LINESENS_TIMEOUT,
+#endif
 	EVNT_SIZE,
 } EVNT_Handle;
 

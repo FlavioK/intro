@@ -142,6 +142,7 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
     SensorFctArray[i].SetInput(); /* turn I/O line as input */
   }
   (void)RefCnt_ResetCounter(timerHandle); /* reset timer counter */
+  FRTOS1_taskENTER_CRITICAL();
   do {
     cnt = 0;
     timerVal = RefCnt_GetCounterValue(timerHandle);
@@ -149,12 +150,19 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
       if (raw[i]==MAX_SENSOR_VALUE) { /* not measured yet? */
         if (SensorFctArray[i].GetVal()==0) {
           raw[i] = timerVal;
+        }else{
+        	if(timerVal > SensorCalibMinMax.maxVal[i]){
+        		raw[i]=timerVal;
+#if PL_HAS_EVENTS
+        		EVNT_SetEvent(EVNT_LINESENS_TIMEOUT);
+        	}
         }
       } else { /* have value */
         cnt++;
       }
     }
   } while(cnt!=REF_NOF_SENSORS);
+  FRTOS1_taskEXIT_CRITICAL();
   LED_IR_Off(); /* IR LED's off */
 }
 

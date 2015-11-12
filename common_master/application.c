@@ -260,7 +260,13 @@ void APP_event_handler(EVNT_Handle event) {
 #endif /*LED_NBR >=1*/
 #endif /*PL_HAS_LED*/
 		break;
-
+#if PL_HAS_REFLECTANCE
+	case EVNT_LINESENS_TIMEOUT:
+#if PL_HAS_SHELL
+		SHELL_SendString("Reflectance Timeout. => defective?\r\n");
+#endif
+		break;
+#endif
 	default:
 #if PL_HAS_KEY
       APP_KeyEvntHandler(event);
