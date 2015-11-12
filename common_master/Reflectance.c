@@ -6,7 +6,7 @@
  * This module implements the driver for the bot front sensor.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_REFLECTANCE
 #include "Reflectance.h"
 #include "LED_IR.h"
@@ -155,6 +155,7 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
         		raw[i]=timerVal;
 #if PL_HAS_EVENTS
         		EVNT_SetEvent(EVNT_LINESENS_TIMEOUT);
+#endif/*PL_HAS_EVENTS*/
         	}
         }
       } else { /* have value */
