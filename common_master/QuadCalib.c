@@ -7,7 +7,7 @@
  */
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_QUAD_CALIBRATION
+#if PL_HAS_QUAD_CALIBRATION
 #include "QuadCalib.h"
 #include "Shell.h"
 #include "FRTOS1.h"

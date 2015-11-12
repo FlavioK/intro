@@ -47,6 +47,9 @@
 #if PL_HAS_REFLECTANCE
 #include "Reflectance.h"
 #endif
+#if PL_HAS_MOTOR
+#include "Motor.h"
+#endif
 
 
 void PL_Init(void) {
@@ -83,6 +86,9 @@ void PL_Init(void) {
 #endif
 #if PL_HAS_REFLECTANCE
 	REF_Init();
+#endif
+#if PL_HAS_MOTOR
+	MOT_Init();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Init();
@@ -126,6 +132,9 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_REFLECTANCE
 	REF_Deinit();
+#endif
+#if PL_HAS_MOTOR
+	MOT_Deinit();
 #endif
 #if PL_HAS_RTOS
 	RTOS_Deinit();

@@ -19,6 +19,7 @@
 #endif
 #if PL_HAS_SHELL
 #include "CLS1.h"
+#include "Shell.h"
 #endif
 #if PL_HAS_BUZZER
 #include "Buzzer.h"

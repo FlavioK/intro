@@ -7,7 +7,7 @@
  */
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_MOTOR
+#if PL_HAS_MOTOR
 #include "Motor.h"
 #include "DIRR.h"
 #include "DIRL.h"
@@ -90,13 +90,13 @@ void MOT_ChangeSpeedPercent(MOT_MotorDevice *motor, MOT_SpeedPercent relPercent)
 void MOT_SetDirection(MOT_MotorDevice *motor, MOT_Direction dir) {
   /*! \todo Check if directions are working properly with your hardware */
   if (dir==MOT_DIR_BACKWARD) {
-    motor->DirPutVal(1);
-    if (motor->currSpeedPercent<0) {
+    motor->DirPutVal(0);
+    if (motor->currSpeedPercent>0) {
       motor->currSpeedPercent = -motor->currSpeedPercent;
     }
   } else if (dir==MOT_DIR_FORWARD) {
-    motor->DirPutVal(0);
-    if (motor->currSpeedPercent>0) {
+    motor->DirPutVal(1);
+    if (motor->currSpeedPercent<0) {
       motor->currSpeedPercent = -motor->currSpeedPercent;
     }
   }
@@ -110,7 +110,7 @@ MOT_Direction MOT_GetDirection(MOT_MotorDevice *motor) {
   }
 }
 
-#if PL_CONFIG_HAS_SHELL
+#if PL_HAS_SHELL
 static void MOT_PrintHelp(const CLS1_StdIOType *io) {
   CLS1_SendHelpStr((unsigned char*)"motor", (unsigned char*)"Group of motor commands\r\n", io->stdOut);
   CLS1_SendHelpStr((unsigned char*)"  help|status", (unsigned char*)"Shows motor help or status\r\n", io->stdOut);

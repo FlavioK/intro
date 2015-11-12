@@ -8,7 +8,7 @@
  */
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_CONFIG_NVM
+#if PL_HAS_CONFIG_NVM
 #include "NVM_Config.h"
 #include "IFsh1.h"
 

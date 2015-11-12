@@ -10,7 +10,7 @@
 #define MOTOR_H_
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_MOTOR
+#if PL_HAS_MOTOR
 
 typedef enum {
   MOT_DIR_FORWARD,  /*!< Motor forward direction */
@@ -87,7 +87,7 @@ void MOT_SetDirection(MOT_MotorDevice *motor, MOT_Direction dir);
  */
 MOT_Direction MOT_GetDirection(MOT_MotorDevice *motor);
 
-#if PL_CONFIG_HAS_SHELL
+#if PL_HAS_SHELL
 #include "CLS1.h"
 /*!
  * \brief Shell command line parser.

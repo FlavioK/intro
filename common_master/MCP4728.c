@@ -7,7 +7,7 @@
  */
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_MCP4728
+#if PL_HAS_MCP4728
 #include "MCP4728.h"
 #include "GI2C1.h"
 #include "UTIL1.h"
