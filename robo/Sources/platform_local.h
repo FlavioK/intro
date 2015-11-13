@@ -8,7 +8,7 @@
 #ifndef SOURCES_PLATFORM_LOCAL_H_
 #define SOURCES_PLATFORM_LOCAL_H_
 
-#define DEVICENAME ROBO
+#define PL_IS_ROBO
 #define LED_NBR 						(2)
 #define KEY_NBR 						(1)
 
@@ -28,7 +28,7 @@
 #define PL_LOCAL_HAS_REFLECTANCE		(1)
 #define PL_LOCAL_HAS_MCP4728			(0)
 #define PL_LOCAL_HAS_MOTOR				(1)
-#define PL_LOCAL_HAS_CONFIG_NVM			(0)
+#define PL_LOCAL_HAS_CONFIG_NVM			(1)
 #define PL_HAS_LOCAL_QUAD_CALIBRATION	(0)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */
