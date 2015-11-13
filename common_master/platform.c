@@ -50,6 +50,12 @@
 #if PL_HAS_MOTOR
 #include "Motor.h"
 #endif
+#if PL_HAS_QUAD_CALIBRATION
+#include "QuadCalib.h"
+#endif
+#if PL_HAS_MCP4728
+#include "MCP4728.h"
+#endif
 
 
 void PL_Init(void) {
@@ -95,6 +101,9 @@ void PL_Init(void) {
 #endif
 #if PL_HAS_MENU
 	MENU_Init();
+#endif
+#if PL_HAS_MCP4728
+	MCP4728_Init();
 #endif
 }
 

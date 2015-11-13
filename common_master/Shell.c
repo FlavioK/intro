@@ -12,6 +12,8 @@
 #include "CLS1.h"
 #include "Application.h"
 #include "FRTOS1.h"
+
+
 #if PL_HAS_USB_CDC
   #include "USB1.h"
 #endif
@@ -30,6 +32,16 @@
 #if PL_HAS_MOTOR
 #include "Motor.h"
 #endif
+#if PL_HAS_QUAD_CALIBRATION
+#include "QuadCalib.h"
+#endif
+#if PL_HAS_MCP4728
+#include "MCP4728.h"
+#include "Q4CLeft.h"
+#include "Q4CRight.h"
+#endif
+
+
 
 /* forward declaration */
 static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
@@ -56,6 +68,14 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_HAS_MOTOR
   MOT_ParseCommand,
+#endif
+#if PL_HAS_QUAD_CALIBRATION
+  QUADCALIB_ParseCommand,
+#endif
+#if PL_HAS_MCP4728
+  MCP4728_ParseCommand,
+  Q4CLeft_ParseCommand,
+  Q4CRight_ParseCommand,
 #endif
   NULL /* Sentinel */
 };
@@ -164,6 +184,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if CLS1_DEFAULT_SERIAL
   CLS1_ConstStdIOTypePtr ioLocal = CLS1_GetStdio();  
 #endif
+
   
   (void)pvParameters; /* not used */
 #if PL_HAS_USB_CDC
@@ -187,6 +208,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_BLUETOOTH
     (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
 #endif
+
 
 #if PL_HAS_SHELLQUEUE
     unsigned char ch;

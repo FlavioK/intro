@@ -104,6 +104,8 @@
 #include "TU_QuadInt.h"
 #include "IFsh1.h"
 #include "IntFlashLdd1.h"
+#include "GI2C1.h"
+#include "CI2C1.h"
 
 #ifdef __cplusplus
 extern "C" {
