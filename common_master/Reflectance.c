@@ -26,6 +26,9 @@
 #if PL_HAS_BUZZER
   #include "Buzzer.h"
 #endif
+#if PL_HAS_CONFIG_NVM
+#include "NVM_Config.h"
+#endif
 
 #define REF_NOF_SENSORS       6 /* number of sensors */
 #define REF_SENSOR1_IS_LEFT   1 /* sensor number one is on the left side */
@@ -66,9 +69,11 @@ typedef struct SensorCalibT_ {
   SensorTimeType minVal[REF_NOF_SENSORS];
   SensorTimeType maxVal[REF_NOF_SENSORS];
 } SensorCalibT;
+typedef SensorCalibT *SensorCalibT_ptr;
 
 static int16_t refCenterLineVal=0; /* 0 means no line, >0 means line is below sensor 0, 1000 below sensor 1 and so on */
 static SensorCalibT SensorCalibMinMax; /* min/max calibration data in SRAM */
+SensorCalibT_ptr SensorCalibMinMaxptr = &SensorCalibMinMax; /*Pointer to Sensor Calib data*/
 static SensorTimeType SensorRaw[REF_NOF_SENSORS]; /* raw sensor values */
 static SensorTimeType SensorCalibrated[REF_NOF_SENSORS]; /* 0 means white/min value, 1000 means black/max value */
 
@@ -431,6 +436,9 @@ static void REF_StateMachine(void) {
     
     case REF_STATE_STOP_CALIBRATION:
       SHELL_SendString((unsigned char*)"...stopping calibration.\r\n");
+#if PL_HAS_CONFIG_NVM
+      NVMC_SaveReflectanceData(SensorCalibMinMaxptr,sizeof(*SensorCalibMinMaxptr));
+#endif
       refState = REF_STATE_READY;
       break;
         
@@ -471,6 +479,11 @@ void REF_Init(void) {
 #endif
   refState = REF_STATE_INIT;
   timerHandle = RefCnt_Init(NULL);
+  /*Load old Reflectance data*/
+#if PL_HAS_CONFIG_NVM
+  SensorCalibMinMaxptr = NVMC_GetReflectanceData();
+  SensorCalibMinMax = *SensorCalibMinMaxptr;
+#endif
   /*! \todo You might need to adjust priority or other task settings */
   if (FRTOS1_xTaskCreate(ReflTask, "Refl", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+1, NULL) != pdPASS) {
     for(;;){} /* error */
