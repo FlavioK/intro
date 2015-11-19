@@ -106,6 +106,7 @@
 #include "KSDK1.h"
 #include "TU_US.h"
 #include "TRIG.h"
+#include "RTT1.h"
 
 #ifdef __cplusplus
 extern "C" {

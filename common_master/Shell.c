@@ -49,6 +49,9 @@
 #if PL_HAS_ULTRASONIC
 #include "Ultrasonic.h"
 #endif
+#if PL_HAS_SEGGER_RTT
+#include "RTT1.h"
+#endif
 
 
 
@@ -167,6 +170,15 @@ static CLS1_ConstStdIOType BT_stdio = {
 };
 #endif
 
+#if PL_HAS_SEGGER_RTT
+static CLS1_ConstStdIOType RTT_stdio = {
+  (CLS1_StdIO_In_FctType)RTT1_StdIOReadChar, /* stdin */
+  (CLS1_StdIO_OutErr_FctType)RTT1_StdIOSendChar, /* stdout */
+  (CLS1_StdIO_OutErr_FctType)RTT1_StdIOSendChar, /* stderr */
+  RTT1_StdIOKeyPressed /* if input is not empty */
+};
+#endif /*PL_HAS_SEGGER_RTT*/
+
 #if PL_HAS_USB_CDC /* USB-CDC stdio */
 static bool CDC_StdIOKeyPressed(void) {
   return (bool)((CDC1_GetCharsInRxBuf()==0U) ? FALSE : TRUE); /* true if there are characters in receive buffer */
@@ -202,6 +214,9 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if CLS1_DEFAULT_SERIAL
   CLS1_ConstStdIOTypePtr ioLocal = CLS1_GetStdio();  
 #endif
+#if PL_HAS_SEGGER_RTT
+  static unsigned char rtt_buf[48];
+#endif
 
   
   (void)pvParameters; /* not used */
@@ -210,6 +225,9 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #endif
 #if PL_HAS_BLUETOOTH
   bluetooth_buf[0] = '\0';
+#endif
+#if PL_HAS_SEGGER_RTT
+  rtt_buf[0] = '\0';
 #endif
 
   localConsole_buf[0] = '\0';
@@ -225,6 +243,9 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #endif
 #if PL_HAS_BLUETOOTH
     (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
+#endif
+#if PL_HAS_SEGGER_RTT
+    (void)CLS1_ReadAndParseWithCommandTable(rtt_buf, sizeof(bluetooth_buf), &RTT_stdio, CmdParserTable);
 #endif
 
 

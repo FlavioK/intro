@@ -34,6 +34,7 @@
 #define PL_HAS_PID				(0 && PL_LOCAL_HAS_PID)
 #define PL_HAS_MOTOR_TACHO		(1 && PL_LOCAL_HAS_MOTOR_TACHO)
 #define PL_HAS_ULTRASONIC		(1 && PL_LOCAL_HAS_ULTRASONIC)
+#define PL_HAS_SEGGER_RTT (1 && PL_LOCAL_HAS_SEGGER_RTT)
 
 void PL_Init(void);
 void PL_Deinit(void);
