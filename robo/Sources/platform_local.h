@@ -17,6 +17,7 @@
 #define PL_LOCAL_HAS_LED 				(1)
 #define PL_LOCAL_HAS_KEY 				(1)
 #define PL_LOCAL_HAS_SHELL 				(1)
+#define PL_LOCAL_HAS_SHELLQUEUE			(1)
 #define PL_LOCAL_HAS_BLUETOOTH			(1)
 #define PL_LOCAL_HAS_USB_CDC			(1)
 #define PL_LOCAL_HAS_TRIGGER 			(1)
@@ -32,5 +33,6 @@
 #define PL_LOCAL_HAS_QUAD_CALIBRATION	(1)
 #define PL_LOCAL_HAS_PID				(1)
 #define PL_LOCAL_HAS_MOTOR_TACHO		(1)
+#define PL_LOCAL_HAS_ULTRASONIC			(1)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */

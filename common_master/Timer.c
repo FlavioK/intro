@@ -9,7 +9,6 @@
 #include "Platform.h"
 #if PL_HAS_TIMER
 #include "Timer.h"
-#include "TI1.h"
 #include "event_handler.h"
 #if PL_HAS_TRIGGER
 #include "Trigger.h"
@@ -28,11 +27,11 @@ void TMR_OnInterrupt(void) {
 }
 
 void TMR_Init(void) {
-	TI1_Enable();
+	/* nothing needed right now */
 }
 
 void TMR_Deinit(void) {
-	TI1_Disable();
+	/* nothing needed right now */
 }
 
 #endif /*PL_HAS_TIMER*/

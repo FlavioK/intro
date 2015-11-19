@@ -152,10 +152,10 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
           raw[i] = timerVal;
         }else{
         	if(timerVal > SensorCalibMinMax.maxVal[i]){
-        		raw[i]=timerVal;
+        		raw[i]=timerVal;/*
 #if PL_HAS_EVENTS
         		EVNT_SetEvent(EVNT_LINESENS_TIMEOUT);
-#endif/*PL_HAS_EVENTS*/
+#endif*//*PL_HAS_EVENTS*/
         	}
         }
       } else { /* have value */

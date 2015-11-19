@@ -36,9 +36,6 @@
 #include "LED2.h"
 #include "LEDpin2.h"
 #include "BitIoLdd2.h"
-#include "TI1.h"
-#include "TimerIntLdd1.h"
-#include "TU1.h"
 #include "WAIT1.h"
 #include "CS1.h"
 #include "Key1.h"
@@ -104,6 +101,8 @@
 #include "GI2C1.h"
 #include "CI2C1.h"
 #include "KSDK1.h"
+#include "TU_US.h"
+#include "TRIG.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
