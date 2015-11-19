@@ -31,7 +31,8 @@
 #define PL_HAS_MOTOR 			(1 && PL_LOCAL_HAS_MOTOR)
 #define PL_HAS_CONFIG_NVM 		(1 && PL_LOCAL_HAS_CONFIG_NVM)
 #define PL_HAS_QUAD_CALIBRATION (1 && PL_LOCAL_HAS_QUAD_CALIBRATION)
-
+#define PL_HAS_PID				(0 && PL_LOCAL_HAS_PID)
+#define PL_HAS_MOTOR_TACHO		(1 && PL_LOCAL_HAS_MOTOR_TACHO)
 
 void PL_Init(void);
 void PL_Deinit(void);

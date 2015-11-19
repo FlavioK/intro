@@ -14,10 +14,16 @@
 #if PL_HAS_TRIGGER
 #include "Trigger.h"
 #endif
+#if PL_HAS_MOTOR_TACHO
+#include "Tacho.h"
+#endif
 
 void TMR_OnInterrupt(void) {
 #if PL_HAS_TRIGGER
 		TRG_IncTick();
+#endif
+#if PL_HAS_MOTOR_TACHO
+		TACHO_Sample();
 #endif
 }
 

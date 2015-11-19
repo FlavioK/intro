@@ -30,5 +30,7 @@
 #define PL_LOCAL_HAS_MOTOR				(1)
 #define PL_LOCAL_HAS_CONFIG_NVM			(1)
 #define PL_LOCAL_HAS_QUAD_CALIBRATION	(1)
+#define PL_LOCAL_HAS_PID				(1)
+#define PL_LOCAL_HAS_MOTOR_TACHO		(1)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */

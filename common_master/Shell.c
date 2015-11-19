@@ -40,6 +40,12 @@
 #include "Q4CLeft.h"
 #include "Q4CRight.h"
 #endif
+#if PL_HAS_MOTOR_TACHO
+#include "Tacho.h"
+#endif
+#if PL_HAS_PID
+#include "Pid.h"
+#endif
 
 
 
@@ -76,6 +82,12 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   MCP4728_ParseCommand,
   Q4CLeft_ParseCommand,
   Q4CRight_ParseCommand,
+#endif
+#if PL_HAS_MOTOR_TACHO
+  TACHO_ParseCommand,
+#endif
+#if PL_HAS_PID
+  PID_ParseCommand,
 #endif
   NULL /* Sentinel */
 };

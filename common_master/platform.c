@@ -56,7 +56,12 @@
 #if PL_HAS_MCP4728
 #include "MCP4728.h"
 #endif
-
+#if PL_HAS_PID
+#include "Pid.h"
+#endif
+#if PL_HAS_MOTOR_TACHO
+#include "Tacho.h"
+#endif
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -105,6 +110,12 @@ void PL_Init(void) {
 #if PL_HAS_MCP4728
 	MCP4728_Init();
 #endif
+#if PL_HAS_MOTOR_TACHO
+	TACHO_Init();
+#endif
+#if PL_HAS_PID
+	PID_Init();
+#endif
 }
 
 void PL_Deinit(void) {
@@ -150,5 +161,11 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_MENU
 	MENU_Deinit();
+#endif
+#if PL_HAS_MOTOR_TACHO
+	TACHO_Deinit();
+#endif
+#if PL_HAS_PID
+	PID_Deinit();
 #endif
 }
