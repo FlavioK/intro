@@ -65,6 +65,9 @@
 #if PL_HAS_ULTRASONIC
 #include "Ultrasonic.h"
 #endif
+#if PL_HAS_DRIVE
+#include "Drive.h"
+#endif
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -122,6 +125,9 @@ void PL_Init(void) {
 #if PL_HAS_ULTRASONIC
 	US_Init();
 #endif
+#if PL_HAS_DRIVE
+	DRV_Init();
+#endif
 }
 
 void PL_Deinit(void) {
@@ -176,5 +182,8 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_ULTRASONIC
 	US_Deinit();
+#endif
+#if PL_HAS_DRIVE
+	DRV_Deinit();
 #endif
 }

@@ -260,7 +260,11 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_USB_CDC
     	CDC_stdio.stdOut(ch);
 #endif
+#if PL_HAS_SEGGER_RTT
+    	RTT_stdio.stdOut(ch);
+#endif
     }
+
 #endif
 
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);

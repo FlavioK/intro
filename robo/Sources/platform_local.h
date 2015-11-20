@@ -35,5 +35,6 @@
 #define PL_LOCAL_HAS_MOTOR_TACHO		(1)
 #define PL_LOCAL_HAS_ULTRASONIC			(1)
 #define PL_LOCAL_HAS_SEGGER_RTT			(1)
+#define PL_LOCAL_HAS_DRIVE				(1)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */
