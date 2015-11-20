@@ -46,12 +46,16 @@
 #if PL_HAS_PID
 #include "Pid.h"
 #endif
+#if PL_HAS_DRIVE
+#include "Drive.h"
+#endif
 #if PL_HAS_ULTRASONIC
 #include "Ultrasonic.h"
 #endif
 #if PL_HAS_SEGGER_RTT
 #include "RTT1.h"
 #endif
+
 
 
 
@@ -94,6 +98,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_HAS_PID
   PID_ParseCommand,
+#endif
+#if PL_HAS_PID
+  DRV_ParseCommand,
 #endif
 #if PL_HAS_ULTRASONIC
   US_ParseCommand,
