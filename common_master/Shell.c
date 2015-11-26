@@ -55,6 +55,12 @@
 #if PL_HAS_SEGGER_RTT
 #include "RTT1.h"
 #endif
+#if PL_HAS_TURN
+#include "Turn.h"
+#endif
+#if PL_HAS_LINE_FOLLOW
+#include "LineFollow.h"
+#endif
 
 
 
@@ -104,6 +110,12 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_HAS_ULTRASONIC
   US_ParseCommand,
+#endif
+#if PL_HAS_TURN
+  TURN_ParseCommand,
+#endif
+#if PL_HAS_LINE_FOLLOW
+  LF_ParseCommand,
 #endif
   NULL /* Sentinel */
 };
@@ -167,7 +179,7 @@ static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const
   return ERR_OK;
 }
 
-#if PL_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH_1
 /* Bluetooth stdio */
 static CLS1_ConstStdIOType BT_stdio = {
   (CLS1_StdIO_In_FctType)BT1_StdIOReadChar, /* stdin */
@@ -214,7 +226,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_USB_CDC
   static unsigned char cdc_buf[48];
 #endif
-#if PL_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH_1
   static unsigned char bluetooth_buf[48];
 #endif
   static unsigned char localConsole_buf[48];
@@ -230,7 +242,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_USB_CDC
   cdc_buf[0] = '\0';
 #endif
-#if PL_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH_1
   bluetooth_buf[0] = '\0';
 #endif
 #if PL_HAS_SEGGER_RTT
@@ -248,11 +260,11 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_USB_CDC
     (void)CLS1_ReadAndParseWithCommandTable(cdc_buf, sizeof(cdc_buf), &CDC_stdio, CmdParserTable);
 #endif
-#if PL_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH_1
     (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
 #endif
 #if PL_HAS_SEGGER_RTT
-    (void)CLS1_ReadAndParseWithCommandTable(rtt_buf, sizeof(bluetooth_buf), &RTT_stdio, CmdParserTable);
+    (void)CLS1_ReadAndParseWithCommandTable(rtt_buf, sizeof(rtt_buf), &RTT_stdio, CmdParserTable);
 #endif
 
 
@@ -261,7 +273,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
     while((ch=SQUEUE_ReceiveChar()) && ch!='\0'){
     	ioLocal->stdOut(ch);
 
-#if PL_HAS_BLUETOOTH
+#if PL_HAS_BLUETOOTH_1
     	BT_stdio.stdOut(ch);
 #endif
 #if PL_HAS_USB_CDC

@@ -7,7 +7,7 @@
 #ifndef PID_H_
 #define PID_H_
 
-#include "platform.h"
+#include "Platform.h"
 #if PL_HAS_PID
 
 #if PL_HAS_SHELL
@@ -36,6 +36,8 @@ void PID_Speed(int32_t currSpeed, int32_t setSpeed, bool isLeft);
  * \param isLeft TRUE if is for the left wheel, otherwise for the right wheel
  */
 void PID_Pos(int32_t currPos, int32_t setPos, bool isLeft);
+
+void PID_Line(uint16_t currLine, uint16_t setLine);
 
 /*! \brief Driver initialization */
 void PID_Start(void);
