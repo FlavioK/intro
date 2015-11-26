@@ -85,7 +85,7 @@ void TURN_MoveToPos(int32_t targetLPos, int32_t targetRPos, bool wait, TURN_Stop
       break;
     }
   } /* for */
-#if PL_CONFIG_HAS_SHELL
+#if PL_HAS_SHELL
   if (timeoutMs<=0) {
     SHELL_SendString((unsigned char*)"MoveToPos Timeout.\r\n");
   }
@@ -105,7 +105,7 @@ static void StepsTurn(int32_t stepsL, int32_t stepsR, TURN_StopFct stopIt, int32
     timeout-=5;
     WAIT1_WaitOSms(5);
   }
-#if PL_CONFIG_HAS_SHELL
+#if PL_HAS_SHELL
   if (timeout<=0) {
     SHELL_SendString((unsigned char*)"StepsTurn Stopping Timeout.\r\n");
   }

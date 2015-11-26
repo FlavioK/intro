@@ -110,17 +110,17 @@ void PID_LineCfg(uint16_t currLine, uint16_t setLine, PID_Config *config) {
   speed = ((int32_t)config->maxSpeedPercent)*(0xffff/100); /* 100% */
   pid = Limit(pid, -speed, speed);
   if (pid<0) { /* turn right */
-    speedR = speed;
+    speedR = speed+pid;
     speedL = speed-pid;
   } else { /* turn left */
     speedR = speed+pid;
-    speedL = speed;
+    speedL = speed-pid;
   }
   /* speed is now always positive, make sure it is within 16bit PWM boundary */
   if (speedL>0xFFFF) {
     speedL = 0xFFFF;
   } else if (speedL<0) {
-    speedL = 0;
+    speedL = speedL;
   }
   if (speedR>0xFFFF) {
     speedR = 0xFFFF;
@@ -391,11 +391,11 @@ void PID_Init(void) {
   speedRightConfig.integral = 0;
   speedRightConfig.maxSpeedPercent = speedLeftConfig.maxSpeedPercent;
 #endif
-  lineFwConfig.pFactor100 = 5500;
-  lineFwConfig.iFactor100 = 15;
-  lineFwConfig.dFactor100 = 100;
+  lineFwConfig.pFactor100 = 4500;
+  lineFwConfig.iFactor100 = 150;
+  lineFwConfig.dFactor100 = 6000;
   lineFwConfig.iAntiWindup = 100000;
-  lineFwConfig.maxSpeedPercent = 15;
+  lineFwConfig.maxSpeedPercent = 40;
   lineFwConfig.lastError = 0;
   lineFwConfig.integral = 0;
 
