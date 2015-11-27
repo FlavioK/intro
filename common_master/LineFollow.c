@@ -71,7 +71,8 @@ static bool FollowSegment(bool forward) {
     PID_Line(currLine, REF_MIDDLE_LINE_VALUE); /* move along the line */
     return TRUE;
   } else {
-    return FALSE; /* intersection/change of direction or not on line any more */
+	TURN_TurnAngle((int16_t)180, NULL);
+    return TRUE; /* intersection/change of direction or not on line any more */
   }
 }
 
