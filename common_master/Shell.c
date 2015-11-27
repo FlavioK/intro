@@ -61,6 +61,20 @@
 #if PL_HAS_LINE_FOLLOW
 #include "LineFollow.h"
 #endif
+#if PL_HAS_REMOTE
+#include "Remote.h"
+#endif
+#if PL_HAS_RADIO
+  #include "RApp.h"
+  #include "RNet_App.h"
+  #include "RNetConf.h"
+#endif
+#if RNET_CONFIG_REMOTE_STDIO
+  #include "RStdIO.h"
+#endif
+#if PL_HAS_REMOTE
+  #include "Remote.h"
+#endif
 
 
 
@@ -116,6 +130,15 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_HAS_LINE_FOLLOW
   LF_ParseCommand,
+#endif
+#if PL_HAS_REMOTE
+  REMOTE_ParseCommand,
+#endif
+#if PL_HAS_RADIO
+#if RNET1_PARSE_COMMAND_ENABLED
+  RNET1_ParseCommand,
+#endif
+  RNETA_ParseCommand,
 #endif
   NULL /* Sentinel */
 };
@@ -179,7 +202,7 @@ static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const
   return ERR_OK;
 }
 
-#if PL_HAS_BLUETOOTH_1
+#if PL_HAS_BLUETOOTH
 /* Bluetooth stdio */
 static CLS1_ConstStdIOType BT_stdio = {
   (CLS1_StdIO_In_FctType)BT1_StdIOReadChar, /* stdin */
@@ -226,12 +249,16 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_USB_CDC
   static unsigned char cdc_buf[48];
 #endif
-#if PL_HAS_BLUETOOTH_1
+#if PL_HAS_BLUETOOTH
   static unsigned char bluetooth_buf[48];
 #endif
   static unsigned char localConsole_buf[48];
 #if CLS1_DEFAULT_SERIAL
   CLS1_ConstStdIOTypePtr ioLocal = CLS1_GetStdio();  
+#endif
+#if PL_HAS_RADIO && RNET_CONFIG_REMOTE_STDIO
+  static unsigned char radio_cmd_buf[48];
+  CLS1_ConstStdIOType *ioRemote = RSTDIO_GetStdioRx();
 #endif
 #if PL_HAS_SEGGER_RTT
   static unsigned char rtt_buf[48];
@@ -242,7 +269,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_USB_CDC
   cdc_buf[0] = '\0';
 #endif
-#if PL_HAS_BLUETOOTH_1
+#if PL_HAS_BLUETOOTH
   bluetooth_buf[0] = '\0';
 #endif
 #if PL_HAS_SEGGER_RTT
@@ -260,11 +287,15 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_USB_CDC
     (void)CLS1_ReadAndParseWithCommandTable(cdc_buf, sizeof(cdc_buf), &CDC_stdio, CmdParserTable);
 #endif
-#if PL_HAS_BLUETOOTH_1
+#if PL_HAS_BLUETOOTH
     (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
 #endif
 #if PL_HAS_SEGGER_RTT
     (void)CLS1_ReadAndParseWithCommandTable(rtt_buf, sizeof(rtt_buf), &RTT_stdio, CmdParserTable);
+#endif
+#if PL_HAS_RADIO && RNET_CONFIG_REMOTE_STDIO
+    RSTDIO_Print(ioLocal); /* dispatch incoming messages */
+    (void)CLS1_ReadAndParseWithCommandTable(radio_cmd_buf, sizeof(radio_cmd_buf), ioRemote, CmdParserTable);
 #endif
 
 
@@ -273,7 +304,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
     while((ch=SQUEUE_ReceiveChar()) && ch!='\0'){
     	ioLocal->stdOut(ch);
 
-#if PL_HAS_BLUETOOTH_1
+#if PL_HAS_BLUETOOTH
     	BT_stdio.stdOut(ch);
 #endif
 #if PL_HAS_USB_CDC
@@ -281,6 +312,9 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #endif
 #if PL_HAS_SEGGER_RTT
     	RTT_stdio.stdOut(ch);
+#endif
+#if PL_HAS_RADIO && RNET_CONFIG_REMOTE_STDIO
+    	ioRemote->stdOut(ch);
 #endif
     }
 

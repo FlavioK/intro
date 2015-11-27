@@ -16,6 +16,7 @@
 #define PL_LOCAL_HAS_EVENTS 			(1)
 #define PL_LOCAL_HAS_LED 				(1)
 #define PL_LOCAL_HAS_KEY 				(1)
+#define PL_LOCAL_HAS_JOYSTICK			(0)
 #define PL_LOCAL_HAS_SHELL 				(1)
 #define PL_LOCAL_HAS_SHELLQUEUE			(1)
 #define PL_LOCAL_HAS_BLUETOOTH			(1)
@@ -39,5 +40,8 @@
 #define PL_LOCAL_HAS_DRIVE				(1)
 #define PL_LOCAL_HAS_LINE_FOLLOW		(1)
 #define PL_LOCAL_HAS_TURN				(1)
+#define PL_LOCAL_HAS_REMOTE				(0)
+#define PL_LOCAL_HAS_RADIO				(1)
+#define PL_LOCAL_APP_CONTROL_SENDER		(0)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */

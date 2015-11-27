@@ -74,6 +74,12 @@
 #if PL_HAS_TURN
 #include "Turn.h"
 #endif
+#if PL_HAS_REMOTE
+#include "Remote.h"
+#endif
+#if PL_HAS_RADIO
+#include "RNet_App.h"
+#endif
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -140,6 +146,12 @@ void PL_Init(void) {
 #if PL_HAS_TURN
 	TURN_Init();
 #endif
+#if PL_HAS_REMOTE
+	REMOTE_Init();
+#endif
+#if PL_HAS_RADIO
+	RNETA_Init();
+#endif
 }
 
 void PL_Deinit(void) {
@@ -203,5 +215,11 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_TURN
 	TURN_Deinit();
+#endif
+#if PL_HAS_REMOTE
+	REMOTE_Deinit();
+#endif
+#if PL_HAS_RADIO
+	RNETA_Deinit();
 #endif
 }
