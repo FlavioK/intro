@@ -35,7 +35,7 @@ void RTOS_Run(void) {
 
 void RTOS_Init(void) {
 	if (FRTOS1_xTaskCreate(AppTask, (signed portCHAR *)"App",
-			configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL) != pdPASS) {
+			configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY+1, NULL) != pdPASS) {
 		for (;;) {
 		} /* error */
 	}

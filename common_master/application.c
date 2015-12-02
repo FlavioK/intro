@@ -27,10 +27,16 @@
 #if PL_HAS_RTOS
 #include "RTOS.h"
 #endif
+#if PL_HAS_RADIO
+#include "RApp.h"
+#endif
 
 
 void APP_KeyEvntHandler(EVNT_Handle event){
 	switch(event){
+#if PL_APP_CONTROL_SENDER
+	uint8_t data = 0;
+#endif
 #if PL_CONFIG_HAS_DEBOUNCE
 #if KEY_NBR >= 1
     case EVNT_SW1_PRESSED:
@@ -40,7 +46,10 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 #if PL_HAS_BUZZER
 		BUZ_Beep(440,1000);
 #endif
-
+#if PL_APP_CONTROL_SENDER
+	    data = 'A';
+	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if PL_HAS_SNAKE
   EVNT_SetEvent(EVNT_SNAKE_UP);
 #endif
@@ -62,6 +71,10 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 
 #if KEY_NBR >= 2
     case EVNT_SW2_PRESSED:
+#if PL_APP_CONTROL_SENDER
+	    data = 'B';
+	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if !PL_AUTO_CLEAR_EVENT
     	EVNT_ClearEvent(EVNT_SW2_PRESSED);
 #endif
@@ -83,6 +96,10 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 
   #if KEY_NBR >= 3
    case EVNT_SW3_PRESSED:
+#if PL_APP_CONTROL_SENDER
+	    data = 'C';
+	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if !PL_AUTO_CLEAR_EVENT
     	EVNT_ClearEvent(EVNT_SW3_PRESSED);
 #endif
@@ -104,6 +121,10 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 
   #if KEY_NBR >= 4
     case EVNT_SW4_PRESSED:
+#if PL_APP_CONTROL_SENDER
+	    data = 'D';
+	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if !PL_AUTO_CLEAR_EVENT
     	EVNT_ClearEvent(EVNT_SW4_PRESSED);
 #endif
@@ -125,6 +146,10 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 
   #if KEY_NBR >= 5
     case EVNT_SW5_PRESSED:
+#if PL_APP_CONTROL_SENDER
+	    data = 'E';
+	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if !PL_AUTO_CLEAR_EVENT
     	EVNT_ClearEvent(EVNT_SW5_PRESSED);
 #endif
@@ -143,6 +168,10 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 
   #if KEY_NBR >= 6
     case EVNT_SW6_PRESSED:
+#if PL_APP_CONTROL_SENDER
+	    data = 'F';
+	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
 #if !PL_AUTO_CLEAR_EVENT
     	EVNT_ClearEvent(EVNT_SW6_PRESSED);
 #endif
@@ -161,6 +190,11 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 
   #if KEY_NBR >= 7
     case EVNT_SW7_PRESSED:
+#if PL_APP_CONTROL_SENDER
+	    data = 'G';
+	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
+#endif
+
 #if !PL_AUTO_CLEAR_EVENT
     	EVNT_ClearEvent(EVNT_SW7_PRESSED);
 #endif

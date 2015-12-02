@@ -29,8 +29,18 @@
 #if PL_HAS_LED
   #include "LED.h"
 #endif
+#if PL_HAS_BUZZER
+#include "Buzzer.h"
+#endif
+
 #if PL_HAS_JOYSTICK
   #include "AD1.h"
+#endif
+#if PL_HAS_LINE_FOLLOW
+#include "LineFollow.h"
+#endif
+#if PL_HAS_REFLECTANCE
+#include "Reflectance.h"
 #endif
 #include "Shell.h"
 
@@ -143,12 +153,13 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
   #define SCALE_DOWN 30
   #define MIN_VALUE  250 /* values below this value are ignored */
   #define DRIVE_DOWN 1
+  #define BOOST	5
 
   if (!REMOTE_isOn) {
     return;
   }
   if (z<-900) { /* have a way to stop motor: turn FRDM USB port side up or down */
-#if PL_CONFIG_HAS_DRIVE
+#if PL_HAS_DRIVE
     DRV_SetSpeed(0, 0);
 #else
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
@@ -174,14 +185,14 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
       }
     }
 #if PL_HAS_DRIVE
-    DRV_SetSpeed(speedL*SCALE_DOWN/DRIVE_DOWN, speedR*SCALE_DOWN/DRIVE_DOWN);
+    DRV_SetSpeed(speedL*SCALE_DOWN/DRIVE_DOWN*BOOST, speedR*SCALE_DOWN/DRIVE_DOWN*BOOST);
 #else
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), speedL);
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), speedR);
 #endif
   } else if (speedVal>100 || speedVal<-100) { /* speed */
 #if PL_HAS_DRIVE
-    DRV_SetSpeed(speedVal, speedVal);
+    DRV_SetSpeed(speedVal*BOOST, speedVal*BOOST);
 #else
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -speedVal/SCALE_DOWN);
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), -speedVal/SCALE_DOWN);
@@ -206,7 +217,7 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 
 #if PL_HAS_MOTOR
 static int16_t scaleJoystickTo1K(int8_t val) {
-  /* map speed from -128...127 to -1000...+1000 */
+  /* map speed from -128...127 to -10000...+10000 */
   int tmp;
 
   if (val>0) {
@@ -278,18 +289,38 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
       val = *data; /* get data value */
 #if PL_HAS_SHELL && PL_HAS_BUZZER && PL_HAS_REMOTE
       if (val=='F') { /* F button, disable remote */
-        SHELL_ParseCmd((unsigned char*)"buzzer buz 300 500");
+#if PL_HAS_BUZZER
+    	  BUZ_Beep(600,500);
+#endif
         REMOTE_SetOnOff(FALSE);
         DRV_SetSpeed(0,0); /* turn off motors */
         SHELL_SendString("Remote OFF\r\n");
       } else if (val=='G') { /* center joystick button: enable remote */
-        SHELL_ParseCmd((unsigned char*)"buzzer buz 300 1000");
+#if PL_HAS_BUZZER
+    	  BUZ_Beep(600,500);
+#endif
         REMOTE_SetOnOff(TRUE);
         DRV_SetMode(DRV_MODE_SPEED);
+#if PL_HAS_LINE_FOLLOW
+        LF_StopFollowing();
+#endif
         SHELL_SendString("Remote ON\r\n");
       } else if (val=='C') { /* red 'C' button */
-        /*! \todo add functionality */
+#if PL_HAS_BUZZER
+    	  BUZ_Beep(800,500);
+#endif
+        REMOTE_SetOnOff(FALSE);
+        DRV_SetSpeed(0,0); /* turn off motors */
+        DRV_SetMode(DRV_MODE_NONE);
+#if PL_HAS_LINE_FOLLOW
+        LF_StartFollowing();
+#endif
+        SHELL_SendString("Remote OFF and Line start\r\n");
       } else if (val=='A') { /* green 'A' button */
+    	  DRV_SetMode(DRV_MODE_NONE);
+#if PL_HAS_REFLECTANCE
+    	  REF_CalibrateStartStop();
+#endif
         /*! \todo add functionality */
       }
 #else
