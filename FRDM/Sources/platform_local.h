@@ -40,8 +40,8 @@
 #define PL_LOCAL_HAS_DRIVE				(0)
 #define PL_LOCAL_HAS_LINE_FOLLOW		(0)
 #define PL_LOCAL_HAS_TURN				(0)
-#define PL_LOCAL_HAS_REMOTE				(0)
+#define PL_LOCAL_HAS_REMOTE				(1)
 #define PL_LOCAL_HAS_RADIO				(1)
-#define PL_LOCAL_APP_CONTROL_SENDER		(0)
+#define PL_LOCAL_APP_CONTROL_SENDER		(1)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */

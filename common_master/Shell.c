@@ -79,6 +79,8 @@
 
 
 
+
+
 /* forward declaration */
 static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
 
@@ -144,6 +146,10 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 };
 
 static uint32_t SHELL_val; /* used as demo value for shell */
+
+void SHELL_ParseCmd(unsigned char *cmd) {
+  (void)CLS1_ParseWithCommandTable(cmd, CLS1_GetStdio(), CmdParserTable);
+}
 
 void SHELL_SendString(unsigned char *msg) {
 #if PL_HAS_SHELLQUEUE
@@ -312,9 +318,6 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #endif
 #if PL_HAS_SEGGER_RTT
     	RTT_stdio.stdOut(ch);
-#endif
-#if PL_HAS_RADIO && RNET_CONFIG_REMOTE_STDIO
-    	ioRemote->stdOut(ch);
 #endif
     }
 

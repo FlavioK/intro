@@ -201,7 +201,8 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
 				if (SensorFctArray[i].GetVal() == 0) {
 					raw[i] = timerVal;
 				}else{
-					if(timerVal>MAX_SENSOR_VALUE){
+					if(timerVal>0xFF00){
+						cnt = REF_NOF_SENSORS;
 						break;
 					}
 				}
