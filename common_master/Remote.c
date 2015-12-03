@@ -151,9 +151,9 @@ static void RemoteTask (void *pvParameters) {
 #if PL_HAS_MOTOR
 static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_t z) {
   #define SCALE_DOWN 30
-  #define MIN_VALUE  250 /* values below this value are ignored */
+  #define MIN_VALUE  500 /* values below this value are ignored */
   #define DRIVE_DOWN 1
-  #define BOOST	5
+  #define BOOST	3
 
   if (!REMOTE_isOn) {
     return;
@@ -199,7 +199,7 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 #endif
   } else if (directionVal>100 || directionVal<-100) { /* direction */
 #if PL_HAS_DRIVE
-    DRV_SetSpeed(directionVal/DRIVE_DOWN, -directionVal/DRIVE_DOWN);
+    DRV_SetSpeed(directionVal/DRIVE_DOWN*BOOST, -directionVal/DRIVE_DOWN*BOOST);
 #else
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -directionVal/SCALE_DOWN);
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), (directionVAl/SCALE_DOWN));
