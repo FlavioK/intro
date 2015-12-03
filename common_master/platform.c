@@ -80,6 +80,9 @@
 #if PL_HAS_RADIO
 #include "RNet_App.h"
 #endif
+#if PL_LINE_MAZE
+#include "Maze.h"
+#endif
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -152,6 +155,9 @@ void PL_Init(void) {
 #if PL_HAS_RADIO
 	RNETA_Init();
 #endif
+#if PL_LINE_MAZE
+	MAZE_Init();
+#endif
 }
 
 void PL_Deinit(void) {
@@ -221,5 +227,8 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_RADIO
 	RNETA_Deinit();
+#endif
+#if PL_LINE_MAZE
+	MAZE_Deinit();
 #endif
 }

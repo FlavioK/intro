@@ -70,9 +70,8 @@ static bool FollowSegment(bool forward) {
   if (currLineKind==REF_LINE_STRAIGHT) {
     PID_Line(currLine, REF_MIDDLE_LINE_VALUE); /* move along the line */
     return TRUE;
-  } else {
-	TURN_TurnAngle((int16_t)180, NULL);
-    return TRUE; /* intersection/change of direction or not on line any more */
+  } else{
+	  return FALSE;
   }
 }
 
@@ -87,7 +86,7 @@ static void StateMachine(void) {
       }
       break;
     case STATE_TURN:
-      /*! \todo Handle maze turning? */
+      LF_currState = STATE_FOLLOW_SEGMENT;
       break;
     case STATE_FINISHED:
       /*! \todo Handle maze finished? */

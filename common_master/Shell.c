@@ -75,6 +75,9 @@
 #if PL_HAS_REMOTE
   #include "Remote.h"
 #endif
+#if PL_LINE_MAZE
+#include "Maze.h"
+#endif
 
 
 
@@ -141,6 +144,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   RNET1_ParseCommand,
 #endif
   RNETA_ParseCommand,
+#endif
+#if PL_LINE_MAZE
+  MAZE_ParseCommand,
 #endif
   NULL /* Sentinel */
 };

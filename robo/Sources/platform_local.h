@@ -43,5 +43,6 @@
 #define PL_LOCAL_HAS_REMOTE				(1)
 #define PL_LOCAL_HAS_RADIO				(1)
 #define PL_LOCAL_APP_CONTROL_SENDER		(0)
+#define PL_LOCAL_LINE_MAZE				(1)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */

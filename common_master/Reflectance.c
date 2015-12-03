@@ -160,6 +160,16 @@ static const SensorFctType SensorFctArray[REF_NOF_SENSORS] = { { S1_SetOutput,
 		S5_SetOutput, S5_SetInput, S5_SetVal, S5_GetVal }, { S6_SetOutput,
 		S6_SetInput, S6_SetVal, S6_GetVal }, };
 
+#if PL_LINE_MAZE
+void REF_GetSensorValues(uint16_t *values, int nofValues) {
+	int i;
+
+	for (i = 0; i < nofValues && i < REF_NOF_SENSORS; i++) {
+		values[i] = SensorCalibrated[i];
+	}
+}
+#endif
+
 #if REF_START_STOP_CALIB
 void REF_CalibrateStartStop(void) {
 	if (refState == REF_STATE_NOT_CALIBRATED
@@ -200,15 +210,13 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
 			if (raw[i] == MAX_SENSOR_VALUE) { /* not measured yet? */
 				if (SensorFctArray[i].GetVal() == 0) {
 					raw[i] = timerVal;
-				}else{
-					if(timerVal>0xFF00){
-						cnt = REF_NOF_SENSORS;
-						break;
-					}
 				}
 			} else { /* have value */
 				cnt++;
 			}
+		}
+		if (timerVal > 0xFF00) {
+			break;
 		}
 	} while (cnt != REF_NOF_SENSORS);
 	FRTOS1_taskEXIT_CRITICAL();
@@ -357,14 +365,14 @@ static REF_LineKind ReadLineKind(SensorTimeType val[REF_NOF_SENSORS]) {
 
 	if (outerLeft >= REF_MIN_LINE_VAL && outerRight < REF_MIN_LINE_VAL
 			&& sumLeft > MIN_LEFT_RIGHT_SUM && sumRight < MIN_LEFT_RIGHT_SUM) {
-#if PL_APP_LINE_MAZE
+#if PL_LINE_MAZE
 		return REF_LINE_LEFT; /* line going to the left side */
 #else
 		return REF_LINE_STRAIGHT;
 #endif
 	} else if (outerLeft < REF_MIN_LINE_VAL && outerRight >= REF_MIN_LINE_VAL
 			&& sumRight > MIN_LEFT_RIGHT_SUM && sumLeft < MIN_LEFT_RIGHT_SUM) {
-#if PL_APP_LINE_MAZE
+#if PL_LINE_MAZE
 		return REF_LINE_RIGHT; /* line going to the right side */
 #else
 		return REF_LINE_STRAIGHT;
@@ -391,7 +399,7 @@ REF_LineKind REF_GetLineKind(void) {
 static void REF_Measure(void) {
 	ReadCalibrated(SensorCalibrated, SensorRaw);
 	refCenterLineVal = ReadLine(SensorCalibrated, SensorRaw,
-			REF_USE_WHITE_LINE);
+	REF_USE_WHITE_LINE);
 #if PL_HAS_LINE_FOLLOW
 	refLineKind = ReadLineKind(SensorCalibrated);
 #endif
@@ -596,7 +604,7 @@ static void REF_StateMachine(void) {
 	case REF_STATE_STOP_CALIBRATION:
 		SHELL_SendString((unsigned char*) "...stopping calibration.\r\n");
 #if PL_HAS_CONFIG_NVM
-		NVMC_SaveReflectanceData(&SensorCalibMinMax,sizeof(SensorCalibMinMax));
+		NVMC_SaveReflectanceData(&SensorCalibMinMax, sizeof(SensorCalibMinMax));
 #endif
 		refState = REF_STATE_READY;
 		break;
@@ -642,7 +650,7 @@ void REF_Init(void) {
 	timerHandle = RefCnt_Init(NULL);
 	/*Load old Reflectance data*/
 #if PL_HAS_CONFIG_NVM
-	SensorCalibMinMax = *(SensorCalibT*)NVMC_GetReflectanceData();
+	SensorCalibMinMax = *(SensorCalibT*) NVMC_GetReflectanceData();
 	refState = REF_STATE_READY;
 #endif
 	/*! \todo You might need to adjust priority or other task settings */
