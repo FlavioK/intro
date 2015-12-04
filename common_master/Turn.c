@@ -26,7 +26,7 @@
 
 #define TURN_STEPS_90         650
   /*!< number of steps for a 90 degree turn */
-#define TURN_STEPS_LINE       230
+#define TURN_STEPS_LINE       150
   /*!< number of steps stepping over the line */
 #define TURN_STEPS_POST_LINE  160
   /*!< number of steps after the line, before making a turn */

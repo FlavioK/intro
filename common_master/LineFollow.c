@@ -24,9 +24,14 @@
 #if PL_HAS_DRIVE
   #include "Drive.h"
 #endif
+#if PL_LINE_MAZE
+#include "Maze.h"
+#endif
 
 #define LINE_DEBUG      1   /* careful: this will slow down the PID loop frequency! */
 #define LINE_FOLLOW_FW  1   /* test setting to do forward line following */
+
+static bool lefthand = TRUE;
 
 typedef enum {
   STATE_IDLE,              /* idle, not doing anything */
@@ -39,8 +44,9 @@ typedef enum {
 static volatile StateType LF_currState = STATE_IDLE;
 static volatile bool LF_stopIt = FALSE;
 
-void LF_StartFollowing(void) {
+void LF_StartFollowing(bool mode) {
   PID_Start();
+  lefthand = mode;
   LF_currState = STATE_FOLLOW_SEGMENT;
   DRV_SetMode(DRV_MODE_NONE); /* disable any drive mode */
 }
@@ -76,20 +82,29 @@ static bool FollowSegment(bool forward) {
 }
 
 static void StateMachine(void) {
+	bool finished = FALSE;
   switch (LF_currState) {
     case STATE_IDLE:
       break;
     case STATE_FOLLOW_SEGMENT:
       if (!FollowSegment(LINE_FOLLOW_FW)) {
-        LF_currState = STATE_STOP; /* stop if we do not have a line any more */
-        SHELL_SendString((unsigned char*)"No line, stopped!\r\n");
+        LF_currState = STATE_TURN; /* stop if we do not have a line any more */
       }
       break;
     case STATE_TURN:
+    	if(MAZE_EvaluteTurn(&finished,lefthand)== ERR_FAILED){
+    		LF_currState = STATE_STOP;
+    		break;
+    	}
+    	if(finished == TRUE){
+    		LF_currState = STATE_FINISHED;
+    		break;
+    	}
       LF_currState = STATE_FOLLOW_SEGMENT;
       break;
     case STATE_FINISHED:
       /*! \todo Handle maze finished? */
+    	LF_currState = STATE_STOP;
       break;
     case STATE_STOP:
       SHELL_SendString("LINE: Stop!\r\n");
@@ -155,7 +170,7 @@ uint8_t LF_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdI
     LF_PrintStatus(io);
     *handled = TRUE;
   } else if (UTIL1_strcmp((char*)cmd, (char*)"line start")==0) {
-    LF_StartFollowing();
+    LF_StartFollowing(TRUE);
     *handled = TRUE;
   } else if (UTIL1_strcmp((char*)cmd, (char*)"line stop")==0) {
     LF_StopFollowing();

@@ -305,7 +305,7 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
         LF_StopFollowing();
 #endif
         SHELL_SendString("Remote ON\r\n");
-      } else if (val=='C') { /* red 'C' button */
+      } else if (val=='L') { /* red 'C' button */
 #if PL_HAS_BUZZER
     	  BUZ_Beep(800,500);
 #endif
@@ -313,10 +313,21 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
         DRV_SetSpeed(0,0); /* turn off motors */
         DRV_SetMode(DRV_MODE_NONE);
 #if PL_HAS_LINE_FOLLOW
-        LF_StartFollowing();
+        LF_StartFollowing(TRUE);
 #endif
         SHELL_SendString("Remote OFF and Line start\r\n");
-      } else if (val=='A') { /* green 'A' button */
+      }else if (val=='R') { /* red 'C' button */
+#if PL_HAS_BUZZER
+    	  BUZ_Beep(800,500);
+#endif
+        REMOTE_SetOnOff(FALSE);
+        DRV_SetSpeed(0,0); /* turn off motors */
+        DRV_SetMode(DRV_MODE_NONE);
+#if PL_HAS_LINE_FOLLOW
+        LF_StartFollowing(FALSE);
+#endif
+        SHELL_SendString("Remote OFF and Line start\r\n");
+      }else if (val=='C') { /* green 'A' button */
     	  DRV_SetMode(DRV_MODE_NONE);
 #if PL_HAS_REFLECTANCE
     	  REF_CalibrateStartStop();

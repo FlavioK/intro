@@ -47,7 +47,7 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 		BUZ_Beep(440,1000);
 #endif
 #if PL_APP_CONTROL_SENDER
-	    data = 'A';
+	    data = 'L';
 	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
 #endif
 #if PL_HAS_SNAKE
@@ -60,6 +60,10 @@ void APP_KeyEvntHandler(EVNT_Handle event){
 #endif
 #if PL_HAS_BUZZER
 		BUZ_Beep(600,1000);
+#endif
+#if PL_APP_CONTROL_SENDER
+	    data = 'R';
+	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
 #endif
       break;
     case EVNT_SW1_RELEASED:

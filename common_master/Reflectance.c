@@ -215,7 +215,7 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
 				cnt++;
 			}
 		}
-		if (timerVal > 0xFF00) {
+		if (timerVal > 9375) {/*5ms*/
 			break;
 		}
 	} while (cnt != REF_NOF_SENSORS);
