@@ -73,7 +73,7 @@ void MAZE_ClearSensorHistory(void) {
 	}
 }
 
-#define MAZE_MAX_PATH        4 /* maximum number of turns in path */
+#define MAZE_MAX_PATH        128 /* maximum number of turns in path */
 
 static TURN_Kind path[MAZE_MAX_PATH]; /* recorded maze */
 static uint8_t pathLength; /* number of entries in path[] */
@@ -125,21 +125,21 @@ TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr, bool lefthand) {
 			return TURN_RIGHT90;
 		}
 	} else if (prev == REF_LINE_FULL && curr == REF_LINE_STRAIGHT) {
-		if(lefthand){
+		if (lefthand) {
 			return TURN_LEFT90;
-		}else{
+		} else {
 			return TURN_RIGHT90;
 		}
 	} else if (prev == REF_LINE_LEFT && curr == REF_LINE_STRAIGHT) {
-		if(lefthand){
-		return TURN_LEFT90;
-		}else{
+		if (lefthand) {
+			return TURN_LEFT90;
+		} else {
 			return TURN_STRAIGHT;
 		}
 	} else if (prev == REF_LINE_RIGHT && curr == REF_LINE_STRAIGHT) {
-		if(lefthand){
-		return TURN_STRAIGHT;
-		}else{
+		if (lefthand) {
+			return TURN_STRAIGHT;
+		} else {
 			return TURN_RIGHT90;
 		}
 	} else if (prev == REF_LINE_FULL && curr == REF_LINE_FULL) {
@@ -180,7 +180,7 @@ void MAZE_SimplifyPath(void) {
  * \brief Performs a turn.
  * \return Returns TRUE while turn is still in progress.
  */
-uint8_t MAZE_EvaluteTurn(bool *finished,bool lefthand) {
+uint8_t MAZE_EvaluteTurn(bool *finished, bool lefthand) {
 	REF_LineKind historyLineKind, currLineKind;
 	TURN_Kind turn;
 
@@ -194,12 +194,18 @@ uint8_t MAZE_EvaluteTurn(bool *finished,bool lefthand) {
 		TURN_Turn(TURN_STEP_LINE_FW_POST_LINE, MAZE_SampleTurnStopFunction); /* do the line and beyond in one step */
 		historyLineKind = MAZE_HistoryLineKind(); /* new read new values */
 		currLineKind = REF_GetLineKind();
-		turn = MAZE_SelectTurn(historyLineKind, currLineKind,lefthand);
+		turn = MAZE_SelectTurn(historyLineKind, currLineKind, lefthand);
+	}
+	if(turn != TURN_FINISHED){
+		MAZE_AddPath(turn);
 	}
 	if (turn == TURN_FINISHED) {
+		MAZE_RevertPath();
+		MAZE_SetSolved();
+		TURN_Turn(TURN_LEFT180, NULL);
 		*finished = TRUE;
-		LF_StopFollowing();
 		SHELL_SendString((unsigned char*) "MAZE: finished!\r\n");
+
 		return ERR_OK;
 	} else if (turn == TURN_STRAIGHT) {
 		/*! \todo Extend if necessary */
