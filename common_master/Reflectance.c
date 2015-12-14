@@ -197,7 +197,7 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
 		SensorFctArray[i].SetVal(); /* put high */
 		raw[i] = MAX_SENSOR_VALUE;
 	}
-	WAIT1_Waitus(50); /* give at least 10 us to charge the capacitor */
+	WAIT1_Waitus(40); /* give at least 10 us to charge the capacitor */
 	for (i = 0; i < REF_NOF_SENSORS; i++) {
 		SensorFctArray[i].SetInput(); /* turn I/O line as input */
 	}
@@ -215,7 +215,7 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
 				cnt++;
 			}
 		}
-		if (timerVal > 9375) {/*5ms*/
+		if (timerVal > 20000) {/*solala 7ms*/
 			break;
 		}
 	} while (cnt != REF_NOF_SENSORS);
