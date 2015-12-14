@@ -30,10 +30,10 @@
   /*!< number of steps stepping over the line */
 #define TURN_STEPS_POST_LINE  160
   /*!< number of steps after the line, before making a turn */
-#define TURN_STEPS_90_TIMEOUT_MS        1000
+#define TURN_STEPS_90_TIMEOUT_MS        500
 #define TURN_STEPS_LINE_TIMEOUT_MS      200
 #define TURN_STEPS_POST_LINE_TIMEOUT_MS 200
-#define TURN_STEPS_STOP_TIMEOUT_MS      300
+#define TURN_STEPS_STOP_TIMEOUT_MS      400
 
 static int32_t TURN_Steps90 = TURN_STEPS_90;
 static int32_t TURN_StepsLine = TURN_STEPS_LINE;

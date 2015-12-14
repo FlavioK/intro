@@ -151,7 +151,7 @@ static void RemoteTask (void *pvParameters) {
 #if PL_HAS_MOTOR
 static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_t z) {
   #define SCALE_DOWN 30
-  #define MIN_VALUE  500 /* values below this value are ignored */
+  #define MIN_VALUE  300 /* values below this value are ignored */
   #define DRIVE_DOWN 1
   #define BOOST	3
 

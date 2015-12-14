@@ -175,60 +175,65 @@ void MAZE_AddPath(TURN_Kind kind) {
 void MAZE_SimplifyPath(void) {
 	int k = 0;
 	int counter = 0;
+	int i = 0;
 	TURN_Kind pathnew[MAZE_MAX_PATH];
 	do {
 		counter = 0;
 		k = 0;
-		for (int i = 0; i < pathLength; i++) {
+		for (i=0; i < pathLength; i++) {
 
 			if (path[i] == TURN_LEFT180) {
 				counter++;
 				if (path[i - 1] == TURN_STRAIGHT
 						&& path[i + 1] == TURN_LEFT90) {
-					pathnew[k - 1] = TURN_RIGHT90;
+					path[k - 1] = TURN_RIGHT90;
 					i++;
 				} else if (path[i - 1] == TURN_LEFT90
 						&& path[i + 1] == TURN_LEFT90) {
-					pathnew[k - 1] = TURN_STRAIGHT;
+					path[k - 1] = TURN_STRAIGHT;
 					i++;
 				} else if (path[i - 1] == TURN_LEFT90
 						&& path[i + 1] == TURN_RIGHT90) {
-					pathnew[k - 1] = TURN_LEFT180;
+					path[k - 1] = TURN_LEFT180;
 					i++;
 				} else if (path[i - 1] == TURN_RIGHT90
 						&& path[i + 1] == TURN_LEFT90) {
-					pathnew[k - 1] = TURN_LEFT180;
+					path[k - 1] = TURN_LEFT180;
 					i++;
 				} else if (path[i - 1] == TURN_LEFT90
 						&& path[i + 1] == TURN_STRAIGHT) {
-					pathnew[k - 1] = TURN_RIGHT90;
+					path[k - 1] = TURN_RIGHT90;
 					i++;
 				} else if (path[i - 1] == TURN_RIGHT90
 						&& path[i + 1] == TURN_STRAIGHT) {
-					pathnew[k - 1] = TURN_LEFT90;
+					path[k - 1] = TURN_LEFT90;
 					i++;
 				} else if (path[i - 1] == TURN_RIGHT90
 						&& path[i + 1] == TURN_RIGHT90) {
-					pathnew[k - 1] = TURN_STRAIGHT;
+					path[k - 1] = TURN_STRAIGHT;
 					i++;
 				} else if (path[i - 1] == TURN_STRAIGHT
 						&& path[i + 1] == TURN_RIGHT90) {
-					pathnew[k - 1] = TURN_LEFT90;
+					path[k - 1] = TURN_LEFT90;
 					i++;
 				} else if (path[i - 1] == TURN_STRAIGHT
 						&& path[i + 1] == TURN_STRAIGHT) {
-					pathnew[k - 1] = TURN_LEFT180;
+					path[k - 1] = TURN_LEFT180;
 					i++;
 				}
+				i++;
 				break;
 
 			} else {
-				pathnew[k] = path[i];
 				k++;
 			}
 		}
-		for (int i = 0; i < k; i++) {
-			path[i] = pathnew[i];
+
+
+
+		for (i; i < pathLength; i++) {
+			path[k] = path[i];
+			k++;
 		}
 		pathLength = k;
 	} while (counter != 0);
