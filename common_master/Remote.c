@@ -199,7 +199,7 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 #endif
   } else if (directionVal>100 || directionVal<-100) { /* direction */
 #if PL_HAS_DRIVE
-    DRV_SetSpeed(directionVal/DRIVE_DOWN*BOOST, -directionVal/DRIVE_DOWN*BOOST);
+    DRV_SetSpeed(directionVal/DRIVE_DOWN*3/2, -directionVal/DRIVE_DOWN*3/2);
 #else
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -directionVal/SCALE_DOWN);
     MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), (directionVAl/SCALE_DOWN));

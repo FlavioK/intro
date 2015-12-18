@@ -61,7 +61,7 @@ typedef struct SensorFctType_ {
 } SensorFctType;
 
 typedef uint16_t SensorTimeType;
-#define MAX_SENSOR_VALUE  ((SensorTimeType)-1)
+#define MAX_SENSOR_VALUE  7000
 
 /* calibration min/max values */
 typedef struct SensorCalibT_ {
@@ -215,7 +215,7 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
 				cnt++;
 			}
 		}
-		if (timerVal > 20000) {/*solala 7ms*/
+		if (timerVal > MAX_SENSOR_VALUE) {/*solala 5ms*/
 			break;
 		}
 	} while (cnt != REF_NOF_SENSORS);
@@ -629,7 +629,7 @@ static void ReflTask(void *pvParameters) {
 //  SQUEUE_SendString("Reflectance task started!\r\n");
 	for (;;) {
 		REF_StateMachine();
-		FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+		FRTOS1_vTaskDelay(5/portTICK_RATE_MS);
 	}
 }
 

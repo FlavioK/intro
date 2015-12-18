@@ -54,6 +54,7 @@ void LF_StartFollowing(bool mode) {
 
 void LF_StopFollowing(void) {
 	LF_stopIt = TRUE;
+	MAZE_ClearSolution();
 	LF_currState = STATE_IDLE;
 }
 
@@ -124,7 +125,8 @@ static void StateMachine(void) {
 		if(returned){
 			LF_currState = STATE_FINISHED;
 		}else{
-			LF_currState = STATE_FOLLOW_SEGMENT;
+			LF_StartFollowing(lefthand);
+
 		}
 		break;
 	case STATE_FINISHED:
