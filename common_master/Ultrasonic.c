@@ -4,7 +4,7 @@
  * \author Erich Styger, erich.styger@hslu.ch
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_ULTRASONIC
 #include "Ultrasonic.h"
 #include "TU_US.h"

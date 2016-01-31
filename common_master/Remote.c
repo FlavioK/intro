@@ -6,7 +6,7 @@
  * Module to handle accelerometer values passed over the Radio.
  */
 
-#include "Platform.h" /* interface to the platform */
+#include "platform.h" /* interface to the platform */
 #if PL_HAS_REMOTE
 #include "Remote.h"
 #include "FRTOS1.h"
@@ -14,7 +14,7 @@
 #include "UTIL1.h"
 #include "Shell.h"
 #if PL_HAS_PID
-  #include "PID.h"
+  #include "Pid.h"
 #endif
 #if PL_HAS_MOTOR
   #include "Motor.h"

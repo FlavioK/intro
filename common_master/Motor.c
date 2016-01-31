@@ -6,7 +6,7 @@
  * This module a driver for up to two small DC motors.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_MOTOR
 #include "Motor.h"
 #include "DIRR.h"

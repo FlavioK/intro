@@ -4,7 +4,7 @@
  *  Created on: Feb 15, 2013
  *      Author: Erich Styger
  */
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_LINE_FOLLOW
 #include "LineFollow.h"
 #include "FRTOS1.h"

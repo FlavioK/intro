@@ -7,13 +7,13 @@
  * This module implements the application part of the program.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_RADIO
 #include "RNetConf.h"
 #if RNET_CONFIG_REMOTE_STDIO
   #include "RStdIO.h"
 #endif
-#include "Application.h"
+#include "application.h"
 #include "RNet_App.h"
 #include "Radio.h"
 #include "RStack.h"

@@ -8,7 +8,7 @@
  * detect both short and long key presses, which is a plus.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_CONFIG_HAS_DEBOUNCE
 #include <stddef.h> /* for NULL */
 #include "Debounce.h"

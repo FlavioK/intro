@@ -8,7 +8,7 @@
 #ifndef SOURCES_COMMON_MASTER_LED_H_
 #define SOURCES_COMMON_MASTER_LED_H_
 
-#include "Platform.h"
+#include "platform.h"
 #if LED_NBR >= 1
 #include "LED1.h"
 #endif

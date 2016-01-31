@@ -8,7 +8,7 @@
 #ifndef MAZE_H_
 #define MAZE_H_
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_LINE_MAZE
 #include "Turn.h"
 

@@ -9,7 +9,7 @@
 #ifndef QUADCALIB_H_
 #define QUADCALIB_H_
 
-#include "Platform.h"
+#include "platform.h"
 
 #if PL_HAS_SHELL
 #include "CLS1.h"

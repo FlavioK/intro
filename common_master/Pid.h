@@ -7,7 +7,7 @@
 #ifndef PID_H_
 #define PID_H_
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_PID
 
 #if PL_HAS_SHELL

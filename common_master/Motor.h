@@ -9,7 +9,7 @@
 #ifndef MOTOR_H_
 #define MOTOR_H_
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_MOTOR
 
 typedef enum {

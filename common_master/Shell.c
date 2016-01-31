@@ -10,7 +10,7 @@
 #if PL_HAS_SHELL
 #include "Shell.h"
 #include "CLS1.h"
-#include "Application.h"
+#include "application.h"
 #include "FRTOS1.h"
 
 

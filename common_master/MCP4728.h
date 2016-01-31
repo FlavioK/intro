@@ -9,7 +9,7 @@
 #ifndef _MCP4728_H__
 #define _MCP4728_H__
 
-#include "Platform.h"
+#include "platform.h"
 
 #if PL_HAS_SHELL
   #include "CLS1.h"

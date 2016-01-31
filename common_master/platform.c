@@ -17,7 +17,7 @@
 #include "event_handler.h"
 #endif
 #if PL_HAS_TIMER
-#include "timer.h"
+#include "Timer.h"
 #endif
 #if PL_HAS_TRIGGER
 #include "Trigger.h"

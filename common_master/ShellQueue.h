@@ -9,7 +9,7 @@
 #ifndef SHELL_QUEUE_C_
 #define SHELL_QUEUE_C_
 
-#include "Platform.h"
+#include "platform.h"
 
 /*!
  * \brief Sends a string to the queue. Note that if the queue is full, it will block.

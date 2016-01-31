@@ -9,7 +9,7 @@
 #ifndef DRIVE_H_
 #define DRIVE_H_
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_DRIVE
 
 #if PL_HAS_SHELL

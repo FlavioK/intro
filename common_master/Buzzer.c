@@ -6,7 +6,7 @@
  * This module implements the driver for the buzzer.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_BUZZER
 #include "Buzzer.h"
 #include "BUZ1.h"

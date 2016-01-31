@@ -8,7 +8,7 @@
 #ifndef RNETAPP_H_
 #define RNETAPP_H_
 
-#include "Platform.h"
+#include "platform.h"
 #include "RNWK.h"
 #if PL_HAS_SHELL
 #include "CLS1.h"

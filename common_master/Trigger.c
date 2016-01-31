@@ -6,7 +6,7 @@
  * This module implements a trigger module.
  * Triggers are special events which are triggered in a given time in the future
  */
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_TRIGGER
 #include "Trigger.h"
 #include "Cpu.h"

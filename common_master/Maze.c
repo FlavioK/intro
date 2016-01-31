@@ -4,7 +4,7 @@
  *  Created on: Mar 11, 2013
  *      Author: Erich Styger
  */
-#include "Platform.h"
+#include "platform.h"
 #if PL_LINE_MAZE
 #include "Maze.h"
 #include "Turn.h"

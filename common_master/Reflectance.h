@@ -9,7 +9,7 @@
 #ifndef REFLECTANCE_H_
 #define REFLECTANCE_H_
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_REFLECTANCE
 
 #if PL_HAS_LINE_FOLLOW

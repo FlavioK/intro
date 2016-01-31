@@ -10,7 +10,7 @@
 #ifndef TRIGGER_H_
 #define TRIGGER_H_
 
-#include "Platform.h"
+#include "platform.h"
 #include "Timer.h"
 
 #define TRG_TICKS_MS  TMR_TICK_MS

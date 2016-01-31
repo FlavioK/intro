@@ -7,7 +7,7 @@
  * into non-volatile FLASH memory on the microcontroller.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_CONFIG_NVM
 #include "NVM_Config.h"
 #include "IFsh1.h"

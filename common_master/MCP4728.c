@@ -6,7 +6,7 @@
  * This module implements the driver for Microchip MCP4728 DAC.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_MCP4728
 #include "MCP4728.h"
 #include "GI2C1.h"

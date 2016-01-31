@@ -20,7 +20,7 @@
 #include "IR6.h"
 #include "UTIL1.h"
 #include "FRTOS1.h"
-#include "Application.h"
+#include "application.h"
 #include "event_handler.h"
 #include "Shell.h"
 #if PL_HAS_BUZZER

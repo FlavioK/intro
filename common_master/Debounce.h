@@ -9,7 +9,7 @@
 #ifndef __DEBOUNCE_H_
 #define __DEBOUNCE_H_
 
-#include "Platform.h"
+#include "platform.h"
 #include "Trigger.h"
 
 /*! \brief States of the key detection state machine. */

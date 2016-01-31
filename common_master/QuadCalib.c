@@ -6,7 +6,7 @@
  * This is the implementation of the quadrature calibration module.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_QUAD_CALIBRATION
 #include "QuadCalib.h"
 #include "Shell.h"

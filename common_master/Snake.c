@@ -13,7 +13,7 @@
 * this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp
 * ----------------------------------------------------------------------------
 */
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_SNAKE
 #include "PDC1.h"
 #include "WAIT1.h"

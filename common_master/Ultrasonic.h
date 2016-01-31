@@ -7,7 +7,7 @@
 #ifndef ULTRASONIC_H_
 #define ULTRASONIC_H_
 
-#include "Platform.h"
+#include "platform.h"
 
 typedef enum {
   US_SIGNAL_OK, /* signal received ok */

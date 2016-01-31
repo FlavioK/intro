@@ -7,7 +7,7 @@
 #ifndef __REMOTE_H_
 #define __REMOTE_H_
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_REMOTE
 #include "CLS1.h"
 #include "RApp.h"

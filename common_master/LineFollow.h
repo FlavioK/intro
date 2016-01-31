@@ -8,7 +8,7 @@
 #ifndef LINEFOLLOW_H_
 #define LINEFOLLOW_H_
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_LINE_FOLLOW
 
 #if PL_HAS_SHELL

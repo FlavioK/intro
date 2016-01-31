@@ -6,13 +6,13 @@
  * This module implements debouncing of up to 4 Keys.
  */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_CONFIG_HAS_DEBOUNCE
 
 #include "Key.h"
 #include "Debounce.h"
 #include "Trigger.h"
-#include "Event_handler.h"
+#include "event_handler.h"
 
 /*!
  * \brief Returns the state of the keys. This directly reflects the value of the port

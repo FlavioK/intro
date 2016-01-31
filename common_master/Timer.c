@@ -6,7 +6,7 @@
  * This module implements the driver for all our timers.
   */
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_TIMER
 #include "Timer.h"
 #include "event_handler.h"

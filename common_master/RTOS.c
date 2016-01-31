@@ -10,7 +10,7 @@
 #include "FRTOS1.h"
 #include "event_handler.h"
 #include "Key.h"
-#include "Application.h"
+#include "application.h"
 
 static void AppTask(void* param) {
 	EVNT_SetEvent(EVNT_STARTUP); /* set startup event */

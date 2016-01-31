@@ -8,7 +8,7 @@
 #ifndef TURN_H_
 #define TURN_H_
 
-#include "Platform.h"
+#include "platform.h"
 #if PL_HAS_TURN
 #include "Reflectance.h"
 
