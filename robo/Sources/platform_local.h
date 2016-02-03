@@ -19,7 +19,7 @@
 #define PL_LOCAL_HAS_JOYSTICK			(0)
 #define PL_LOCAL_HAS_SHELL 				(1)
 #define PL_LOCAL_HAS_SHELLQUEUE			(1)
-#define PL_LOCAL_HAS_BLUETOOTH			(1)
+#define PL_LOCAL_HAS_BLUETOOTH			(0)
 #define PL_LOCAL_HAS_USB_CDC			(1)
 #define PL_LOCAL_HAS_TRIGGER 			(1)
 #define PL_LOCAL_HAS_BUZZER 			(1)
@@ -44,5 +44,6 @@
 #define PL_LOCAL_HAS_RADIO				(1)
 #define PL_LOCAL_APP_CONTROL_SENDER		(0)
 #define PL_LOCAL_LINE_MAZE				(1)
+#define PL_LOCAL_HAS_ACCEL				(0)
 
 #endif /* SOURCES_PLATFORM_LOCAL_H_ */

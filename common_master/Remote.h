@@ -22,6 +22,8 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
  */
 bool REMOTE_GetOnOff(void);
 
+
+void REMOTE_changeRemoteInput(void);
 /*!
  * \brief Function to turn on or off the remote controller.
  * \param[in] on TRUE for turning it on, FALSE otherwise.

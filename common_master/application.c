@@ -30,6 +30,9 @@
 #if PL_HAS_RADIO
 #include "RApp.h"
 #endif
+#if PL_HAS_REMOTE
+#include "Remote.h"
+#endif
 
 
 void APP_KeyEvntHandler(EVNT_Handle event){
@@ -145,6 +148,9 @@ void APP_KeyEvntHandler(EVNT_Handle event){
     case EVNT_SW5_PRESSED:
 #if PL_APP_CONTROL_SENDER
 	    data = 'E';
+#if PL_HAS_REMOTE
+	    REMOTE_changeRemoteInput();
+#endif
 	    (void)RAPP_SendPayloadDataBlock(&data, sizeof(data), RAPP_MSG_TYPE_JOYSTICK_BTN, RNWK_ADDR_BROADCAST, RPHY_PACKET_FLAGS_NONE);
 #endif
 #if !PL_AUTO_CLEAR_EVENT

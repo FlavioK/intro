@@ -1,10 +1,10 @@
 /* ###################################################################
 **     Filename    : main.c
-**     Project     : FRDM
+**     Project     : acceleration
 **     Processor   : MKL25Z128VLK4
 **     Version     : Driver 01.01
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2015-09-25, 14:22, # CodeGen: 0
+**     Date/Time   : 2016-02-02, 10:57, # CodeGen: 0
 **     Abstract    :
 **         Main module.
 **         This module contains user's application code.
@@ -30,67 +30,31 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
+#include "MMA1.h"
+#include "GI2C1.h"
+#include "WAIT1.h"
+#include "CI2C1.h"
+#include "CLS1.h"
+#include "UTIL1.h"
+#include "CS1.h"
+#include "KSDK1.h"
+#include "AS1.h"
+#include "ASerialLdd1.h"
 #include "LED1.h"
 #include "LEDpin1.h"
 #include "BitIoLdd1.h"
 #include "LED2.h"
 #include "LEDpin2.h"
 #include "BitIoLdd2.h"
-#include "WAIT1.h"
-#include "TI1.h"
-#include "TimerIntLdd1.h"
-#include "TU1.h"
-#include "CS1.h"
-#include "Key1.h"
-#include "BitIoLdd4.h"
-#include "Key2.h"
-#include "BitIoLdd5.h"
-#include "Key3.h"
-#include "BitIoLdd6.h"
-#include "Key4.h"
-#include "BitIoLdd7.h"
-#include "Key5.h"
-#include "BitIoLdd8.h"
-#include "Key6.h"
-#include "BitIoLdd9.h"
-#include "Key7.h"
-#include "BitIoLdd10.h"
-#include "AD1.h"
-#include "AdcLdd1.h"
-#include "CLS1.h"
-#include "UTIL1.h"
-#include "AS1.h"
-#include "ASerialLdd1.h"
-#include "FRTOS1.h"
-#include "USB1.h"
-#include "USB0.h"
-#include "CDC1.h"
-#include "Tx1.h"
-#include "Rx1.h"
-#include "IFsh1.h"
-#include "IntFlashLdd1.h"
-#include "KSDK1.h"
-#include "RNET1.h"
-#include "RF1.h"
-#include "CE1.h"
-#include "BitIoLdd17.h"
-#include "CSN1.h"
-#include "BitIoLdd18.h"
-#include "SM1.h"
-#include "SMasterLdd1.h"
-#include "MMA1.h"
-#include "GI2C1.h"
-#include "CI2C1.h"
+#include "LED3.h"
+#include "LEDpin3.h"
+#include "BitIoLdd3.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
 /* User includes (#include below this line is not maintained by Processor Expert) */
-
-
-#include "application.h"
-
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -103,10 +67,6 @@ int main(void)
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
-
-
-APP_run();
-
   /* For example: for(;;) { } */
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/

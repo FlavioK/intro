@@ -11,9 +11,15 @@
 #include "event_handler.h"
 #include "Key.h"
 #include "application.h"
+#if PL_HAS_ACCEL
+#include "MMA1.h"
+#endif
 
 static void AppTask(void* param) {
 	EVNT_SetEvent(EVNT_STARTUP); /* set startup event */
+#if PL_HAS_ACCEL
+	ACCEL_Init();
+#endif
 	for (;;) {
 #if PL_HAS_EVENTS
 #if !PL_AUTO_CLEAR_EVENT

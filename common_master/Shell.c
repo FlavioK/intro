@@ -78,6 +78,9 @@
 #if PL_LINE_MAZE
 #include "Maze.h"
 #endif
+#if PL_HAS_ACCEL
+#include "MMA1.h"
+#endif
 
 
 
@@ -147,6 +150,11 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_LINE_MAZE
   MAZE_ParseCommand,
+#endif
+#if PL_HAS_ACCEL
+#if MMA1_PARSE_COMMAND_ENABLED
+  MMA1_ParseCommand,
+#endif
 #endif
   NULL /* Sentinel */
 };

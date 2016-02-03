@@ -83,6 +83,9 @@
 #if PL_LINE_MAZE
 #include "Maze.h"
 #endif
+#if PL_HAS_ACCEL
+#include "acceleration.h"
+#endif
 
 void PL_Init(void) {
 #if PL_HAS_LED
@@ -158,6 +161,7 @@ void PL_Init(void) {
 #if PL_LINE_MAZE
 	MAZE_Init();
 #endif
+
 }
 
 void PL_Deinit(void) {
@@ -230,5 +234,8 @@ void PL_Deinit(void) {
 #endif
 #if PL_LINE_MAZE
 	MAZE_Deinit();
+#endif
+#if PL_HAS_ACCEL
+	ACCEL_Deinit();
 #endif
 }

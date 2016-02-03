@@ -44,6 +44,8 @@
 #define PL_HAS_RADIO			(1 && PL_LOCAL_HAS_RADIO)
 #define PL_APP_CONTROL_SENDER	(1 && PL_LOCAL_APP_CONTROL_SENDER)
 #define PL_LINE_MAZE			(1 && PL_LOCAL_LINE_MAZE)
+#define PL_HAS_ACCEL			(1 && PL_LOCAL_HAS_ACCEL)
+
 
 void PL_Init(void);
 void PL_Deinit(void);
